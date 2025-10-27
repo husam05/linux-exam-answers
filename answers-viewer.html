@@ -71,28 +71,43 @@
   <script>
     const SHEET_NAMES = { A: 'A', B: 'B', C: 'C', D: 'D', E: 'E', F: 'F' };
     const fileName = (s) => `sheet-${s}-answers.md`;
-    const candidates = (s) => [
-      `https://cdn.jsdelivr.net/gh/husam05/linux-exam-answers@master/${fileName(s)}`,
-      `https://raw.githubusercontent.com/husam05/linux-exam-answers/master/${fileName(s)}`,
-    ];
 
-    async function fetchWithFallback(urls) {
+    // Try multiple sources: jsDelivr -> raw.githubusercontent -> GitHub Contents API
+    async function fetchMarkdown(sheet) {
+      const s = sheet.toUpperCase();
+      const bust = Date.now();
+      const urls = [
+        `https://cdn.jsdelivr.net/gh/husam05/linux-exam-answers@master/${fileName(s)}?v=${bust}`,
+        `https://raw.githubusercontent.com/husam05/linux-exam-answers/master/${fileName(s)}?v=${bust}`,
+      ];
+
+      // Attempt CDNs first
       let lastErr;
       for (const url of urls) {
         try {
-          const res = await fetch(url, {
-            cache: 'no-store',
-            mode: 'cors',
-            headers: { 'Accept': 'text/plain; charset=utf-8' }
-          });
-          if (res.ok) {
-            return await res.text();
-          }
+          const res = await fetch(url, { cache: 'no-store', mode: 'cors' });
+          if (res.ok) return await res.text();
           lastErr = new Error('HTTP ' + res.status);
         } catch (e) {
           lastErr = e;
         }
       }
+
+      // Fallback: GitHub Contents API (base64)
+      try {
+        const apiUrl = `https://api.github.com/repos/husam05/linux-exam-answers/contents/${fileName(s)}?ref=master&v=${bust}`;
+        const res = await fetch(apiUrl, { cache: 'no-store', mode: 'cors', headers: { 'Accept': 'application/vnd.github.v3+json' } });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const json = await res.json();
+        if (json && json.content) {
+          const md = atob(json.content.replace(/\n/g, ''));
+          return md;
+        }
+        throw new Error('Invalid API response');
+      } catch (e) {
+        lastErr = e;
+      }
+
       throw lastErr || new Error('Fetch failed');
     }
 
@@ -108,22 +123,24 @@
         return;
       }
       select.value = s;
+      // Update header immediately so لا تظهر A مؤقتاً
+      document.getElementById('sheetLabel').textContent = s;
       status.innerHTML = `<span class="muted">جارِ تحميل إجابات ورقة ${s}...</span>`;
       content.innerHTML = '';
       try {
-        const md = await fetchWithFallback(candidates(s));
+        const md = await fetchMarkdown(s);
         const html = marked.parse(md, { breaks: true, gfm: true });
         content.innerHTML = html;
         status.innerHTML = `<span class="muted">تم التحميل ✓</span>`;
       } catch (err) {
         console.error(err);
-        status.innerHTML = '<span class="error">تعذّر تحميل الإجابات. تحقق من الاتصال ثم أعد المحاولة.</span>';
+        const raw = `https://raw.githubusercontent.com/husam05/linux-exam-answers/master/${fileName(s)}`;
+        status.innerHTML = `<span class="error">تعذّر تحميل الإجابات تلقائياً. بإمكانك فتح النسخة النصية مباشرة: <a href="${raw}" target="_blank">${fileName(s)}</a></span>`;
       }
       const url = new URL(window.location.href);
       url.searchParams.set('sheet', s);
       window.history.replaceState({}, '', url);
       document.title = `إجابات ورقة ${s} - جامعة المصطفى`;
-      document.getElementById('sheetLabel').textContent = s;
     }
 
     window.addEventListener('DOMContentLoaded', () => {
