@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام الوصول إلى إجابات الامتحان - جامعة المصطفى</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #003366 0%, #0066cc 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            direction: rtl;
+        }
+
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .header {
+            background: #003366;
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .sheet-info {
+            background: #e8f4f8;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border: 2px solid #0066cc;
+        }
+
+        .sheet-info h2 {
+            color: #003366;
+            margin-bottom: 0.5rem;
+        }
+
+        .auth-form {
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: right;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #003366;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #0066cc;
+        }
+
+        .btn {
+            background: #0066cc;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .btn:hover {
+            background: #003366;
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .student-info {
+            display: none;
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border: 2px solid #0066cc;
+        }
+
+        .student-info.show {
+            display: block;
+        }
+
+        .student-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #003366;
+            margin-bottom: 1rem;
+        }
+
+        .qr-access {
+            display: none;
+            background: #e8f5e8;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 2px solid #28a745;
+        }
+
+        .qr-access.show {
+            display: block;
+        }
+
+        .answer-link {
+            background: #28a745;
+            color: white;
+            padding: 1rem;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.3s;
+            display: block;
+            margin-top: 1rem;
+        }
+
+        .answer-link:hover {
+            background: #1e7e34;
+        }
+
+        .error {
+            color: #dc3545;
+            background: #f8d7da;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .success {
+            color: #155724;
+            background: #d4edda;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .loading {
+            display: none;
+            color: #0066cc;
+            margin: 1rem 0;
+        }
+
+        .footer {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #0066cc;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>جامعة المصطفى</h1>
+            <p>كلية الهندسة التقنية للأمن السيبراني</p>
+            <p>نظام الوصول الآمن إلى إجابات الامتحان</p>
+        </div>
+
+        <div class="sheet-info">
+            <h2>ورقة الامتحان: {{ sheet }}</h2>
+            <p>امتحان أساسيات Linux - الامتحان النصفي</p>
+            <p>الدكتور حسام الكناني</p>
+        </div>
+
+        <form class="auth-form" id="authForm">
+            <div class="form-group">
+                <label for="studentId">رقم الطالب:</label>
+                <input type="number" id="studentId" name="studentId" min="1" max="77" required 
+                       placeholder="أدخل رقمك من 1 إلى 77">
+            </div>
+
+            <button type="submit" class="btn" id="submitBtn">الوصول إلى الإجابات</button>
+        </form>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>جاري التحقق من البيانات...</p>
+        </div>
+
+        <div class="error" id="error"></div>
+        <div class="success" id="success"></div>
+
+        <div class="student-info" id="studentInfo">
+            <div class="student-name" id="studentName"></div>
+            <p>تم التحقق من هويتك بنجاح. يمكنك الآن الوصول إلى إجابات الامتحان.</p>
+        </div>
+
+        <div class="qr-access" id="qrAccess">
+            <h3>الوصول إلى الإجابات:</h3>
+            <a href="#" id="answerLink" class="answer-link" target="_blank">
+                إجابات ورقة الامتحان {{ sheet }}
+            </a>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">
+                ملاحظة: هذا الرابط خاص بك ويحتوي على اسمك للتحقق من الهوية
+            </p>
+        </div>
+
+        <div class="footer">
+            <p>© 2025 جامعة المصطفى - نظام آمن للوصول إلى إجابات الامتحان</p>
+            <p>الدكتور حسام الكناني - امتحان أساسيات Linux</p>
+        </div>
+    </div>
+
+    <script>
+        const examSheet = "{{ sheet }}";
+        
+        document.getElementById('authForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const studentId = parseInt(document.getElementById('studentId').value);
+            const submitBtn = document.getElementById('submitBtn');
+            
+            if (!studentId || studentId < 1 || studentId > 77) {
+                showError('يرجى إدخال رقم طالب صحيح من 1 إلى 77.');
+                return;
+            }
+            
+            // Show loading state
+            document.getElementById('loading').style.display = 'block';
+            submitBtn.disabled = true;
+            hideMessages();
+            
+            // Send authentication request
+            fetch('/auth', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    student_id: studentId,
+                    exam_sheet: examSheet
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('loading').style.display = 'none';
+                submitBtn.disabled = false;
+                
+                if (data.success) {
+                    // Show student info
+                    document.getElementById('studentName').textContent = `مرحباً ${data.student_name}`;
+                    document.getElementById('studentInfo').classList.add('show');
+                    
+                    // Setup answer link
+                    const answerLink = document.getElementById('answerLink');
+                    answerLink.href = data.answer_url;
+                    answerLink.innerHTML = `
+                        إجابات ورقة الامتحان ${data.exam_sheet}
+                        <br>
+                        <small>للطالب: ${data.student_name}</small>
+                    `;
+                    
+                    document.getElementById('qrAccess').classList.add('show');
+                    
+                    showSuccess(`تم التحقق من هويتك بنجاح يا ${data.student_name}. يمكنك الآن الوصول إلى إجابات ورقة الامتحان ${data.exam_sheet}.`);
+                } else {
+                    showError(data.error);
+                }
+            })
+            .catch(error => {
+                document.getElementById('loading').style.display = 'none';
+                submitBtn.disabled = false;
+                showError('حدث خطأ في الاتصال. يرجى المحاولة مرة أخرى.');
+                console.error('Error:', error);
+            });
+        });
+        
+        function showError(message) {
+            const errorDiv = document.getElementById('error');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+        }
+        
+        function showSuccess(message) {
+            const successDiv = document.getElementById('success');
+            successDiv.textContent = message;
+            successDiv.style.display = 'block';
+        }
+        
+        function hideMessages() {
+            document.getElementById('error').style.display = 'none';
+            document.getElementById('success').style.display = 'none';
+            document.getElementById('studentInfo').classList.remove('show');
+            document.getElementById('qrAccess').classList.remove('show');
+        }
+        
+        // Auto-focus on student ID input
+        document.getElementById('studentId').focus();
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+# Student Database for Linux Exam Authentication
+# ID,Full Name in Arabic,Full Name in English (transliterated)
+
+1,احمد سعدون جبار لفتة,Ahmed Saadoun Jabbar Lafta
+2,احمد مثنى غازي سليم,Ahmed Muthanna Ghazi Saleem
+3,احمد ناطق جميل صادق,Ahmed Natiq Jameel Sadiq
+4,احمد وسام عبد الصاحب عبد الله,Ahmed Wissam Abd Al-Sahib Abdullah
+5,الزهراء حسنين محمد عبد الرضا,Al-Zahra Husaynin Mohammed Abd Al-Ridha
+6,ايثار عامر احمد زيدان,Ithar Amer Ahmed Zidan
+7,تبارك صاحب فهد خليفه,Tabarak Sahib Fahd Khalifa
+8,حسن سعد فرحان علي,Hassan Saad Farhan Ali
+9,حسن علي عجرم حسين,Hassan Ali Ajram Hussein
+10,حسين بادي عجرش جويد,Hussein Badi Ajrash Juwaid
+11,حسين رائد زوير عليوي,Hussein Raed Zuwair Alawi
+12,حسين رسول فرج نافض,Hussein Rasoul Faraj Nafidh
+13,حمزه حيدر حمزة صادق,Hamza Haider Hamza Sadiq
+14,حيدر عباس فاضل عباس,Haider Abbas Fadhil Abbas
+15,حيدر عدي داخل رشم,Haider Adi Dakhil Rashm
+16,حيدر علي حسن مهنا,Haider Ali Hassan Mahna
+17,ختام رزاق حاتم زوير,Khatam Razzaq Hatim Zuwair
+18,رضا عدنان رضا مراد,Ridha Adnan Ridha Murad
+19,رقية عادل عباس شايع,Ruqayya Adil Abbas Shayi
+20,رقيه اياد مذكور عزيز,Ruqayya Iyad Madhkour Aziz
+21,ريام علي حسين علي,Riyam Ali Hussein Ali
+22,ريام ماجد كاظم جواد,Riyam Majid Kadhim Jawad
+23,زهراء انور سلمان سعيد,Zahra Anwar Salman Said
+24,زينب طالب جاسم سلمان,Zainab Talib Jasim Salman
+25,سجاد خماس حيدر حافظ,Sajjad Khmas Haider Hafidh
+26,سجاد سعد كريم حسن,Sajjad Saad Kareem Hassan
+27,شهيناز محسن جاسم خلف,Shahinaz Muhsin Jasim Khalaf
+28,شيماء حسن عبيد سيلان,Shaima Hassan Obaid Saylan
+29,ضي مهدي صالح جابر,Dhi Mahdi Salih Jabir
+30,طه اسامه باسم مهدي,Taha Osama Basim Mahdi
+31,عباس كامل جلوب حرفش,Abbas Kamil Jaloub Harfash
+32,عبد الجبار فارس عبد الجبار عبد,Abd Al-Jabbar Faris Abd Al-Jabbar Abd
+33,عبد العزيز طاهر صالح احمد,Abd Al-Aziz Tahir Salih Ahmed
+34,عبد الله بشير مبارك محمد,Abdullah Bashir Mubarak Mohammed
+35,عبد الله حميد فليح حسن,Abdullah Hameed Falih Hassan
+36,عبد الله علاء عادل حسن,Abdullah Alaa Adil Hassan
+37,علي احمد مصطفى عبد الله,Ali Ahmed Mustafa Abdullah
+38,علي جاسم سالم عصيده,Ali Jasim Salem Aseeda
+39,علي جمال ناصر عبد,Ali Jamal Nasir Abd
+40,علي حاتم زرع الله فرهود,Ali Hatim Zar Allah Farhoud
+41,علي حسام عبد العزيز صدام,Ali Hussam Abd Al-Aziz Saddam
+42,علي قاسم حمود جابر,Ali Qasim Hamoud Jabir
+43,علي وسام ناظم جنيت,Ali Wissam Nadhim Janit
+44,عمار ابراهيم حمدي عباس,Ammar Ibrahim Hamdi Abbas
+45,فاضل ابراهيم فاضل محمد,Fadhil Ibrahim Fadhil Mohammed
+46,فاضل زيدان خوف الله حسن,Fadhil Zidan Khawf Allah Hassan
+47,فاطمه عادل عباس شايع,Fatima Adil Abbas Shayi
+48,فرح علي حسين مزعل,Farah Ali Hussein Mizal
+49,كرار حسن عبد الرضا سوادي,Karrar Hassan Abd Al-Ridha Sawadi
+50,كرار عباس رحيم جاسم,Karrar Abbas Rahim Jasim
+51,كرار علاء مهدي شلش,Karrar Alaa Mahdi Shalash
+52,مازن احمد سهام اسماعيل,Mazen Ahmed Siham Ismail
+53,مجتبى سليم أرزيج سالم,Mujtaba Saleem Arzij Salem
+54,محمد الصادق علي جادر عبد,Mohammed Al-Sadiq Ali Jadir Abd
+55,محمد باقر ماجد سيد حسين,Mohammed Baqir Majid Sayyid Hussein
+56,محمد جاسم محمد عبد,Mohammed Jasim Mohammed Abd
+57,محمد رياض حسين عبد الله,Mohammed Riyadh Hussein Abdullah
+58,محمد عامر عباس سعيد,Mohammed Amer Abbas Said
+59,محمد علاء حسين خنيصر,Mohammed Alaa Hussein Khunaiser
+60,محمد علي عبد المجيد رشيد,Mohammed Ali Abd Al-Majeed Rasheed
+61,محمد علي نعثل حنين,Mohammed Ali Naathil Haneen
+62,محمد قيصر فاضل مهلهل,Mohammed Qaisar Fadhil Muhalhal
+63,مصدق رحيم عطيه علي,Musaddiq Rahim Atiya Ali
+64,مصطفى جاسم محمد زبون,Mustafa Jasim Mohammed Zaboun
+65,مصطفى خليل ابراهيم عبد الكريم,Mustafa Khaleel Ibrahim Abd Al-Kareem
+66,مصطفى كاظم ثويني مذبوب,Mustafa Kadhim Thuwaini Madhboub
+67,مصطفى كامل عبد الامير مجيد,Mustafa Kamil Abd Al-Ameer Majeed
+68,مصطفى ماهر عبد العباس علي,Mustafa Mahir Abd Al-Abbas Ali
+69,منتظر حمود حسين ربيع,Muntadhar Hamoud Hussein Rabee
+70,منتظر علي حسين علوان,Muntadhar Ali Hussein Alwan
+71,موسى شاكر كحيط كريم,Musa Shakir Kahit Kareem
+72,نغم عبد اللطيف محمود علي,Nagham Abd Al-Latif Mahmoud Ali
+73,نور مهند عبد الكريم شغيدل,Nour Muhannad Abd Al-Kareem Shaghidal
+74,وسن عبد الستار عبد الرسول فرحان,Wasan Abd Al-Sattar Abd Al-Rasoul Farhan
+75,ولاء سالم جاسم سالم,Walaa Salem Jasim Salem
+76,يزن علي غازي عبد الحسين,Yazan Ali Ghazi Abd Al-Hussein
+77,يوسف احمد حسن علي,Yousif Ahmed Hassan Ali

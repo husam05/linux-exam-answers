@@ -1,0 +1,251 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[margin=0.75in,top=0.8in,bottom=0.7in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+
+% Professional color scheme
+\definecolor{primaryblue}{RGB}{0,51,102}
+\definecolor{accentblue}{RGB}{0,102,204}
+\definecolor{successgreen}{RGB}{0,128,0}
+\definecolor{lightgray}{RGB}{240,240,240}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textbf{AlMustafa University - Answer Key}}
+\fancyhead[R]{\textbf{Linux Essentials Mid-Term Exam}}
+\fancyfoot[C]{\small \textcolor{gray}{Page \thepage}}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0.8pt}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+\begin{document}
+
+\begin{center}
+{\LARGE\textbf{\textcolor{primaryblue}{ANSWER KEY}}}
+
+\vspace{3mm}
+{\large Linux Essentials Course - Mid-Term Exam}
+
+\vspace{2mm}
+{\normalsize Instructor: Dr. Husam Alkinani}
+
+\vspace{1mm}
+{\normalsize Date: November 2, 2025}
+
+\vspace{3mm}
+\rule{\textwidth}{1pt}
+\end{center}
+
+\vspace{5mm}
+
+% ================= SHEET A =================
+\section*{Sheet A - Answer Key}
+
+\subsection*{Question 1: Practical Command Execution (10 points)}
+
+\textbf{Command:} \texttt{ls -l /etc/passwd}
+
+\textbf{Expected Output:}
+\begin{tcolorbox}[colback=lightgray,colframe=primaryblue,boxrule=0.5pt]
+\ttfamily\small
+-rw-r--r-- 1 root root 2847 Oct 15 10:30 /etc/passwd
+\end{tcolorbox}
+
+\textbf{Explanation:} This command displays detailed file information for \texttt{/etc/passwd} including:
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+    \item File permissions: \texttt{-rw-r--r--} (owner: read/write, others: read only)
+    \item Owner and group: root
+    \item File size: 2847 bytes
+    \item Contains user account information (usernames, UIDs, home directories)
+\end{itemize}
+
+\subsection*{Question 2: Theoretical Knowledge (10 points)}
+
+\textbf{Correct Answer:} \textcolor{successgreen}{\textbf{a) read, write, execute}}
+
+\textbf{Justification:} In Linux file permissions, "rwx" represents the three basic permission types: read (r), write (w), and execute (x) for files and directories.
+
+\vspace{3mm}
+\noindent\rule{\textwidth}{0.5pt}
+\vspace{3mm}
+
+% ================= SHEET B =================
+\section*{Sheet B - Answer Key}
+
+\subsection*{Question 1: Practical Command Execution (10 points)}
+
+\textbf{Command:} \texttt{whoami}
+
+\textbf{Expected Output:}
+\begin{tcolorbox}[colback=lightgray,colframe=primaryblue,boxrule=0.5pt]
+\ttfamily\small
+student
+\end{tcolorbox}
+
+\textbf{Explanation:} The \texttt{whoami} command displays:
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+    \item The username of the currently logged-in user
+    \item Simple and quick way to verify your current user identity
+    \item Useful for security verification and scripting
+\end{itemize}
+
+\subsection*{Question 2: Theoretical Knowledge (10 points)}
+
+\textbf{Correct Answer:} \textcolor{successgreen}{\textbf{b) Kali Linux}}
+
+\textbf{Justification:} Kali Linux is specifically designed for cybersecurity professionals and penetration testing, with pre-installed security tools and utilities.
+
+\vspace{3mm}
+\noindent\rule{\textwidth}{0.5pt}
+\vspace{3mm}
+
+% ================= SHEET C =================
+\section*{Sheet C - Answer Key}
+
+\subsection*{Question 1: Practical Command Execution (10 points)}
+
+\textbf{Command:} \texttt{pwd}
+
+\textbf{Expected Output:}
+\begin{tcolorbox}[colback=lightgray,colframe=primaryblue,boxrule=0.5pt]
+\ttfamily\small
+/home/student
+\end{tcolorbox}
+
+\textbf{Explanation:} The \texttt{pwd} (Print Working Directory) command:
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+    \item Displays the absolute path of the current working directory
+    \item Shows your current location in the filesystem hierarchy
+    \item Essential for navigation and file operations
+\end{itemize}
+
+\subsection*{Question 2: Theoretical Knowledge (10 points)}
+
+\textbf{Correct Answer:} \textcolor{successgreen}{\textbf{a) Super user do}}
+
+\textbf{Justification:} "sudo" stands for "Super user do" and allows authorized users to execute commands with elevated (root) privileges temporarily.
+
+\newpage
+
+% ================= SHEET D =================
+\section*{Sheet D - Answer Key}
+
+\subsection*{Question 1: Practical Command Execution (10 points)}
+
+\textbf{Command:} \texttt{df -h}
+
+\textbf{Expected Output:}
+\begin{tcolorbox}[colback=lightgray,colframe=primaryblue,boxrule=0.5pt]
+\ttfamily\footnotesize
+Filesystem      Size  Used Avail Use\% Mounted on\\
+/dev/sda1        50G   20G   28G  42\% /\\
+tmpfs           3.9G     0  3.9G   0\% /dev/shm\\
+/dev/sda2       100G   45G   50G  48\% /home
+\end{tcolorbox}
+
+\textbf{Explanation:} The \texttt{df -h} command displays:
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+    \item Disk space usage for all mounted filesystems
+    \item Human-readable format (GB, MB instead of bytes)
+    \item Shows total size, used space, available space, and usage percentage
+\end{itemize}
+
+\subsection*{Question 2: Theoretical Knowledge (10 points)}
+
+\textbf{Correct Answer:} \textcolor{successgreen}{\textbf{b) Disk space usage in human-readable format}}
+
+\textbf{Justification:} The \texttt{df -h} command reports filesystem disk space usage in human-readable format (KB, MB, GB) instead of block sizes.
+
+\vspace{3mm}
+\noindent\rule{\textwidth}{0.5pt}
+\vspace{3mm}
+
+% ================= SHEET E =================
+\section*{Sheet E - Answer Key}
+
+\subsection*{Question 1: Practical Command Execution (10 points)}
+
+\textbf{Command:} \texttt{uname -a}
+
+\textbf{Expected Output:}
+\begin{tcolorbox}[colback=lightgray,colframe=primaryblue,boxrule=0.5pt]
+\ttfamily\footnotesize
+Linux ubuntu 5.15.0-56-generic \#62-Ubuntu SMP x86\_64 GNU/Linux
+\end{tcolorbox}
+
+\textbf{Explanation:} The \texttt{uname -a} command provides:
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+    \item Complete system information including kernel name, version, and architecture
+    \item Operating system type (Linux)
+    \item Machine hardware name and processor type
+\end{itemize}
+
+\subsection*{Question 2: Theoretical Knowledge (10 points)}
+
+\textbf{Correct Answer:} \textcolor{successgreen}{\textbf{b) Complete system information including kernel version}}
+
+\textbf{Justification:} The \texttt{uname -a} command displays all available system information including kernel version, hostname, and architecture.
+
+\vspace{3mm}
+\noindent\rule{\textwidth}{0.5pt}
+\vspace{3mm}
+
+% ================= SHEET F =================
+\section*{Sheet F - Answer Key}
+
+\subsection*{Question 1: Practical Command Execution (10 points)}
+
+\textbf{Command:} \texttt{top}
+
+\textbf{Expected Output:}
+\begin{tcolorbox}[colback=lightgray,colframe=primaryblue,boxrule=0.5pt]
+\ttfamily\footnotesize
+Tasks: 195 total,   1 running, 194 sleeping\\
+\%Cpu(s):  2.3 us,  1.0 sy,  0.0 ni, 96.7 id\\
+MiB Mem :   7892.5 total,   3421.2 free\\
+PID USER      PR  NI    VIRT    RES  \%CPU  \%MEM COMMAND
+\end{tcolorbox}
+
+\textbf{Explanation:} The \texttt{top} command displays:
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+    \item Real-time system process monitoring
+    \item CPU and memory usage statistics
+    \item Running processes with resource consumption details
+\end{itemize}
+
+\subsection*{Question 2: Theoretical Knowledge (10 points)}
+
+\textbf{Correct Answer:} \textcolor{successgreen}{\textbf{b) Monitor real-time system processes and resource usage}}
+
+\textbf{Justification:} The \texttt{top} command provides dynamic real-time view of running system processes, CPU usage, memory consumption, and system load.
+
+\vspace{5mm}
+
+\begin{center}
+\rule{0.5\textwidth}{0.5pt}
+
+\textbf{Grading Rubric}
+
+\begin{tabular}{ll}
+\toprule
+\textbf{Component} & \textbf{Points} \\
+\midrule
+Question 1 - Command Output & 5 points \\
+Question 1 - Explanation & 5 points \\
+Question 2 - Correct Answer & 5 points \\
+Question 2 - Justification & 5 points \\
+\midrule
+\textbf{Total per Sheet} & \textbf{20 points} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\end{document}

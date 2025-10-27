@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام الوصول إلى إجابات الامتحان - AlMustafa University</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #003366 0%, #0066cc 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            direction: rtl;
+        }
+
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .header {
+            background: #003366;
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .auth-form {
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: right;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #003366;
+        }
+
+        input[type="number"], select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+
+        input[type="number"]:focus, select:focus {
+            outline: none;
+            border-color: #0066cc;
+        }
+
+        .btn {
+            background: #0066cc;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .btn:hover {
+            background: #003366;
+        }
+
+        .student-info {
+            display: none;
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border: 2px solid #0066cc;
+        }
+
+        .student-info.show {
+            display: block;
+        }
+
+        .student-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #003366;
+            margin-bottom: 1rem;
+        }
+
+        .qr-access {
+            display: none;
+            background: #e8f5e8;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 2px solid #28a745;
+        }
+
+        .qr-access.show {
+            display: block;
+        }
+
+        .answer-links {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .answer-link {
+            background: #28a745;
+            color: white;
+            padding: 1rem;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .answer-link:hover {
+            background: #1e7e34;
+        }
+
+        .error {
+            color: #dc3545;
+            background: #f8d7da;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .success {
+            color: #155724;
+            background: #d4edda;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .footer {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .loading {
+            display: none;
+            color: #0066cc;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>جامعة المصطفى - كلية الهندسة التقنية للأمن السيبراني</h1>
+            <p>نظام الوصول الآمن إلى إجابات الامتحان</p>
+            <p>امتحان أساسيات Linux - الامتحان النصفي</p>
+        </div>
+
+        <form class="auth-form" id="authForm">
+            <div class="form-group">
+                <label for="studentId">رقم الطالب:</label>
+                <input type="number" id="studentId" name="studentId" min="1" max="77" required 
+                       placeholder="أدخل رقمك من 1 إلى 77">
+            </div>
+
+            <div class="form-group">
+                <label for="examSheet">ورقة الامتحان:</label>
+                <select id="examSheet" name="examSheet" required>
+                    <option value="">اختر ورقة الامتحان</option>
+                    <option value="A">ورقة A</option>
+                    <option value="B">ورقة B</option>
+                    <option value="C">ورقة C</option>
+                    <option value="D">ورقة D</option>
+                    <option value="E">ورقة E</option>
+                    <option value="F">ورقة F</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn">الوصول إلى الإجابات</button>
+        </form>
+
+        <div class="loading" id="loading">
+            جاري التحقق من البيانات...
+        </div>
+
+        <div class="error" id="error"></div>
+        <div class="success" id="success"></div>
+
+        <div class="student-info" id="studentInfo">
+            <div class="student-name" id="studentName"></div>
+            <p>تم التحقق من هويتك بنجاح. يمكنك الآن الوصول إلى إجابات الامتحان.</p>
+        </div>
+
+        <div class="qr-access" id="qrAccess">
+            <h3>الوصول إلى الإجابات:</h3>
+            <div class="answer-links" id="answerLinks"></div>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">
+                ملاحظة: هذا الرابط خاص بك ويحتوي على اسمك للتحقق من الهوية
+            </p>
+        </div>
+
+        <div class="footer">
+            <p>© 2025 جامعة المصطفى - نظام آمن للوصول إلى إجابات الامتحان</p>
+            <p>الدكتور حسام الكناني - امتحان أساسيات Linux</p>
+        </div>
+    </div>
+
+    <script>
+        // Student database
+        const students = {
+            1: "احمد سعدون جبار لفتة", 2: "احمد مثنى غازي سليم", 3: "احمد ناطق جميل صادق",
+            4: "احمد وسام عبد الصاحب عبد الله", 5: "الزهراء حسنين محمد عبد الرضا", 6: "ايثار عامر احمد زيدان",
+            7: "تبارك صاحب فهد خليفه", 8: "حسن سعد فرحان علي", 9: "حسن علي عجرم حسين", 
+            10: "حسين بادي عجرش جويد", 11: "حسين رائد زوير عليوي", 12: "حسين رسول فرج نافض",
+            13: "حمزه حيدر حمزة صادق", 14: "حيدر عباس فاضل عباس", 15: "حيدر عدي داخل رشم",
+            16: "حيدر علي حسن مهنا", 17: "ختام رزاق حاتم زوير", 18: "رضا عدنان رضا مراد",
+            19: "رقية عادل عباس شايع", 20: "رقيه اياد مذكور عزيز", 21: "ريام علي حسين علي",
+            22: "ريام ماجد كاظم جواد", 23: "زهراء انور سلمان سعيد", 24: "زينب طالب جاسم سلمان",
+            25: "سجاد خماس حيدر حافظ", 26: "سجاد سعد كريم حسن", 27: "شهيناز محسن جاسم خلف",
+            28: "شيماء حسن عبيد سيلان", 29: "ضي مهدي صالح جابر", 30: "طه اسامه باسم مهدي",
+            31: "عباس كامل جلوب حرفش", 32: "عبد الجبار فارس عبد الجبار عبد", 33: "عبد العزيز طاهر صالح احمد",
+            34: "عبد الله بشير مبارك محمد", 35: "عبد الله حميد فليح حسن", 36: "عبد الله علاء عادل حسن",
+            37: "علي احمد مصطفى عبد الله", 38: "علي جاسم سالم عصيده", 39: "علي جمال ناصر عبد",
+            40: "علي حاتم زرع الله فرهود", 41: "علي حسام عبد العزيز صدام", 42: "علي قاسم حمود جابر",
+            43: "علي وسام ناظم جنيت", 44: "عمار ابراهيم حمدي عباس", 45: "فاضل ابراهيم فاضل محمد",
+            46: "فاضل زيدان خوف الله حسن", 47: "فاطمه عادل عباس شايع", 48: "فرح علي حسين مزعل",
+            49: "كرار حسن عبد الرضا سوادي", 50: "كرار عباس رحيم جاسم", 51: "كرار علاء مهدي شلش",
+            52: "مازن احمد سهام اسماعيل", 53: "مجتبى سليم أرزيج سالم", 54: "محمد الصادق علي جادر عبد",
+            55: "محمد باقر ماجد سيد حسين", 56: "محمد جاسم محمد عبد", 57: "محمد رياض حسين عبد الله",
+            58: "محمد عامر عباس سعيد", 59: "محمد علاء حسين خنيصر", 60: "محمد علي عبد المجيد رشيد",
+            61: "محمد علي نعثل حنين", 62: "محمد قيصر فاضل مهلهل", 63: "مصدق رحيم عطيه علي",
+            64: "مصطفى جاسم محمد زبون", 65: "مصطفى خليل ابراهيم عبد الكريم", 66: "مصطفى كاظم ثويني مذبوب",
+            67: "مصطفى كامل عبد الامير مجيد", 68: "مصطفى ماهر عبد العباس علي", 69: "منتظر حمود حسين ربيع",
+            70: "منتظر علي حسين علوان", 71: "موسى شاكر كحيط كريم", 72: "نغم عبد اللطيف محمود علي",
+            73: "نور مهند عبد الكريم شغيدل", 74: "وسن عبد الستار عبد الرسول فرحان", 75: "ولاء سالم جاسم سالم",
+            76: "يزن علي غازي عبد الحسين", 77: "يوسف احمد حسن علي"
+        };
+
+        // GitHub URLs for each sheet (these should be updated with real tokens)
+        const answerUrls = {
+            'A': 'https://github.com/husam05/linux-exam-answers/blob/master/sheet-a-answers.md?token=ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+            'B': 'https://github.com/husam05/linux-exam-answers/blob/master/sheet-b-answers.md?token=ghp_yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy',
+            'C': 'https://github.com/husam05/linux-exam-answers/blob/master/sheet-c-answers.md?token=ghp_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',
+            'D': 'https://github.com/husam05/linux-exam-answers/blob/master/sheet-d-answers.md?token=ghp_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+            'E': 'https://github.com/husam05/linux-exam-answers/blob/master/sheet-e-answers.md?token=ghp_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
+            'F': 'https://github.com/husam05/linux-exam-answers/blob/master/sheet-f-answers.md?token=ghp_ccccccccccccccccccccccccccccccccccccc'
+        };
+
+        document.getElementById('authForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const studentId = parseInt(document.getElementById('studentId').value);
+            const examSheet = document.getElementById('examSheet').value;
+            
+            // Hide previous messages
+            document.getElementById('error').style.display = 'none';
+            document.getElementById('success').style.display = 'none';
+            document.getElementById('studentInfo').classList.remove('show');
+            document.getElementById('qrAccess').classList.remove('show');
+            
+            // Show loading
+            document.getElementById('loading').style.display = 'block';
+            
+            // Simulate authentication delay
+            setTimeout(() => {
+                document.getElementById('loading').style.display = 'none';
+                
+                // Validate student ID
+                if (!students[studentId]) {
+                    showError('رقم الطالب غير صحيح. يرجى إدخال رقم صحيح من 1 إلى 77.');
+                    return;
+                }
+                
+                // Validate exam sheet
+                if (!answerUrls[examSheet]) {
+                    showError('يرجى اختيار ورقة الامتحان.');
+                    return;
+                }
+                
+                // Success - show student info and access
+                const studentName = students[studentId];
+                document.getElementById('studentName').textContent = `مرحباً ${studentName}`;
+                document.getElementById('studentInfo').classList.add('show');
+                
+                // Create personalized answer link
+                const answerUrl = answerUrls[examSheet];
+                const personalizedUrl = `${answerUrl}&student_id=${studentId}&student_name=${encodeURIComponent(studentName)}`;
+                
+                document.getElementById('answerLinks').innerHTML = `
+                    <a href="${personalizedUrl}" target="_blank" class="answer-link">
+                        إجابات ورقة الامتحان ${examSheet}
+                        <br>
+                        <small>للطالب: ${studentName}</small>
+                    </a>
+                `;
+                
+                document.getElementById('qrAccess').classList.add('show');
+                
+                showSuccess(`تم التحقق من هويتك بنجاح يا ${studentName}. يمكنك الآن الوصول إلى إجابات ورقة الامتحان ${examSheet}.`);
+                
+                // Log access attempt (for monitoring)
+                console.log(`Access granted: Student ID ${studentId} (${studentName}) - Sheet ${examSheet} - ${new Date().toISOString()}`);
+                
+            }, 1500);
+        });
+        
+        function showError(message) {
+            const errorDiv = document.getElementById('error');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+        }
+        
+        function showSuccess(message) {
+            const successDiv = document.getElementById('success');
+            successDiv.textContent = message;
+            successDiv.style.display = 'block';
+        }
+        
+        // Auto-focus on student ID input
+        document.getElementById('studentId').focus();
+    </script>
+</body>
+</html>
