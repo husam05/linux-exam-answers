@@ -1,33 +1,36 @@
-# Linux Exam Sheet D - Answer Key
-## Dr. Husam Al-Kanani - Mustafa University
+# Linux Exam Sheet D — Professional Answer Key
+## Dr. Husam Al-Kanani · AlMustafa University
 
-### Question 1: System Monitoring (10 points)
-**Command:** `top -n 1 | head -20`
+> This key mirrors the exact questions on Sheet D. Outputs shown are examples.
 
-**Expected Output:**
+### Question 1: Practical Command Execution (10 points)
+Command to run:
+
+`df -h`
+
+Expected sample output (excerpt):
+
 ```
-top - 10:30:25 up 5 days,  2:15,  3 users,  load average: 0.15, 0.25, 0.20
-Tasks: 125 total,   1 running, 124 sleeping,   0 stopped,   0 zombie
-%Cpu(s):  2.1 us,  0.8 sy,  0.0 ni, 97.0 id,  0.1 wa,  0.0 hi,  0.0 si,  0.0 st
-MiB Mem :   3932.5 total,   1245.7 free,   1234.2 used,   1452.6 buff/cache
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda1        50G   20G   28G  42% /
+tmpfs           3.9G     0  3.9G   0% /dev/shm
+/dev/sda2       100G   45G   50G  48% /home
 ```
 
-**Explanation:**
-- System uptime and load average
-- CPU and memory usage statistics
-- Running processes summary
-
-### Question 2: Disk Usage
-**Answer:** Use `df -h` to check disk space:
-- Shows filesystem usage in human-readable format
-- Displays available space per partition
-- Helps identify storage issues
-
-### Question 3: User Management
-**Answer:** User account commands:
-- `useradd username` - Add new user
-- `usermod -aG group user` - Add user to group
-- `passwd username` - Change password
+Explanation notes:
+- Shows disk space usage for mounted filesystems.
+- Human-readable units due to `-h` (KB/MB/GB).
+- Columns include total size, used, available, percentage, and mountpoint.
 
 ---
-**© 2025 Dr. Husam Al-Kanani - Linux Essentials Mid-Term Exam**
+
+### Question 2: Theoretical Knowledge (10 points)
+MCQ: What does the `df -h` command display in Linux?
+
+Correct answer: **b) Disk space usage in human-readable format**
+
+Justification: `df` reports filesystem disk space usage; `-h` prints sizes in human-readable units instead of blocks.
+
+---
+
+© 2025 · Linux Essentials Mid-Term Exam · Answer Key (Sheet D)

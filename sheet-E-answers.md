@@ -1,31 +1,32 @@
-# Linux Exam Sheet E - Answer Key
-## Dr. Husam Al-Kanani - Mustafa University
+# Linux Exam Sheet E — Professional Answer Key
+## Dr. Husam Al-Kanani · AlMustafa University
 
-### Question 1: Package Management (10 points)
-**Command:** `apt list --installed | grep -i security`
+> This key mirrors the exact questions on Sheet E. Outputs shown are examples.
 
-**Expected Output:**
+### Question 1: Practical Command Execution (10 points)
+Command to run:
+
+`uname -a`
+
+Expected sample output (excerpt):
+
 ```
-libssl1.1/focal-updates,focal-security,now 1.1.1f-1ubuntu2.16 amd64 [installed]
-openssl/focal-updates,focal-security,now 1.1.1f-1ubuntu2.16 amd64 [installed]
+Linux ubuntu 5.15.0-56-generic #62-Ubuntu SMP x86_64 GNU/Linux
 ```
 
-**Explanation:**
-- Lists installed packages related to security
-- Shows version and repository information
-- Helps track security updates
-
-### Question 2: Log Analysis
-**Answer:** Log file locations and commands:
-- `/var/log/syslog` - System messages
-- `tail -f /var/log/auth.log` - Monitor authentication
-- `journalctl -xe` - SystemD logs
-
-### Question 3: Backup Strategy
-**Answer:** Backup methods:
-- `rsync -av source/ destination/` - Sync directories
-- `crontab -e` - Schedule automatic backups
-- `dd if=/dev/sda of=backup.img` - Disk imaging
+Explanation notes:
+- Prints comprehensive system information: kernel name and version, hostname, architecture, and more.
+- Useful for reporting environment details in troubleshooting.
 
 ---
-**© 2025 Dr. Husam Al-Kanani - Linux Essentials Mid-Term Exam**
+
+### Question 2: Theoretical Knowledge (10 points)
+MCQ: What type of information does the `uname -a` command display?
+
+Correct answer: **b) Complete system information including kernel version**
+
+Justification: `uname -a` shows all available system identifiers including kernel, machine, and OS details.
+
+---
+
+© 2025 · Linux Essentials Mid-Term Exam · Answer Key (Sheet E)

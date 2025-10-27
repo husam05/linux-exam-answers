@@ -1,31 +1,35 @@
-# Linux Exam Sheet F - Answer Key
-## Dr. Husam Al-Kanani - Mustafa University
+# Linux Exam Sheet F — Professional Answer Key
+## Dr. Husam Al-Kanani · AlMustafa University
 
-### Question 1: Network Troubleshooting (10 points)
-**Command:** `netstat -tuln | grep :80`
+> This key mirrors the exact questions on Sheet F. Outputs shown are examples.
 
-**Expected Output:**
+### Question 1: Practical Command Execution (10 points)
+Command to run:
+
+`top`
+
+Expected sample output (excerpt):
+
 ```
-tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN
-tcp6       0      0 :::80                   :::*                    LISTEN
+top - 10:30:25 up 5 days,  2:15,  3 users,  load average: 0.15, 0.25, 0.20
+Tasks: 195 total,   1 running, 194 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  2.3 us,  1.0 sy,  0.0 ni, 96.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :   7892.5 total,   3421.2 free,   2013.0 used,   2458.3 buff/cache
 ```
 
-**Explanation:**
-- Shows listening ports on port 80 (HTTP)
-- Displays both IPv4 and IPv6 bindings
-- Useful for web server troubleshooting
-
-### Question 2: Environment Variables
-**Answer:** Environment variable commands:
-- `export VAR=value` - Set variable
-- `echo $PATH` - Display PATH variable
-- `env | grep USER` - Show user variables
-
-### Question 3: Cron Jobs
-**Answer:** Scheduled task management:
-- `crontab -l` - List cron jobs
-- `crontab -e` - Edit cron jobs
-- Format: `* * * * * command` (min hour day month weekday)
+Explanation notes:
+- Provides a dynamic, real-time view of running processes and resource usage.
+- Shows CPU utilization, memory stats, and per-process consumption.
 
 ---
-**© 2025 Dr. Husam Al-Kanani - Linux Essentials Mid-Term Exam**
+
+### Question 2: Theoretical Knowledge (10 points)
+MCQ: What is the primary purpose of the `top` command in Linux system administration?
+
+Correct answer: **b) Monitor real-time system processes and resource usage**
+
+Justification: `top` is a live system monitor focused on processes, CPU/memory usage, and system load.
+
+---
+
+© 2025 · Linux Essentials Mid-Term Exam · Answer Key (Sheet F)

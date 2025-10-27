@@ -1,31 +1,32 @@
-# Linux Exam Sheet C - Answer Key
-## Dr. Husam Al-Kanani - Mustafa University
+# Linux Exam Sheet C — Professional Answer Key
+## Dr. Husam Al-Kanani · AlMustafa University
 
-### Question 1: File Manipulation (10 points)
-**Command:** `find /var/log -name "*.log" -size +1M`
+> This key mirrors the exact questions on Sheet C. Outputs shown are examples.
 
-**Expected Output:**
+### Question 1: Practical Command Execution (10 points)
+Command to run:
+
+`pwd`
+
+Expected sample output:
+
 ```
-/var/log/syslog
-/var/log/apache2/access.log
-/var/log/mysql/error.log
+/home/student
 ```
 
-**Explanation:**
-- Searches /var/log directory for .log files
-- Filters files larger than 1MB
-- Useful for log file management
-
-### Question 2: Text Processing
-**Answer:** Use grep, sed, awk for text manipulation:
-- `grep "pattern" file` - Search text
-- `sed 's/old/new/g' file` - Replace text
-- `awk '{print $1}' file` - Extract columns
-
-### Question 3: Archive Management
-**Answer:** tar command usage:
-- `tar -czf archive.tar.gz folder/` - Create compressed archive
-- `tar -xzf archive.tar.gz` - Extract archive
+Explanation notes:
+- Prints the absolute path of the current working directory.
+- Helps you verify your location in the filesystem hierarchy.
 
 ---
-**© 2025 Dr. Husam Al-Kanani - Linux Essentials Mid-Term Exam**
+
+### Question 2: Theoretical Knowledge (10 points)
+MCQ: What does the Linux command `sudo` stand for?
+
+Correct answer: **a) Super user do**
+
+Justification: `sudo` allows an authorized user to execute a command with elevated (root) privileges temporarily.
+
+---
+
+© 2025 · Linux Essentials Mid-Term Exam · Answer Key (Sheet C)

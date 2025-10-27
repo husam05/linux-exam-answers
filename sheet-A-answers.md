@@ -1,34 +1,34 @@
-# Linux Exam Sheet A - Answer Key
-## Dr. Husam Al-Kanani - Mustafa University
+# Linux Exam Sheet A — Professional Answer Key
+## Dr. Husam Al-Kanani · AlMustafa University
+
+> This key mirrors the exact questions on Sheet A and provides concise model answers. Command outputs are examples; actual values may differ per system.
 
 ### Question 1: Practical Command Execution (10 points)
-**Command:** `ls -l /etc/passwd`
+Command to run:
 
-**Expected Output:**
+`ls -l /etc/passwd`
+
+Expected sample output (one line):
+
 ```
--rw-r--r-- 1 root root 1234 Oct 27 2025 /etc/passwd
+-rw-r--r-- 1 root root 2847 Oct 15 10:30 /etc/passwd
 ```
 
-**Explanation:**
-This command displays detailed information about the /etc/passwd file:
-- File permissions (-rw-r--r--)
-- Owner and group (root root)
-- File size (1234 bytes)
-- Last modification date
-- File path
-
-### Question 2: File System Navigation
-**Answer:** Use `cd` command to navigate between directories
-- `cd /home` - Change to home directory
-- `cd ..` - Go up one level
-- `cd ~` - Go to user home directory
-
-### Question 3: File Permissions
-**Answer:** Linux uses rwx permissions:
-- r (read) = 4
-- w (write) = 2  
-- x (execute) = 1
-- Example: 755 = rwxr-xr-x
+Explanation notes:
+- Shows detailed metadata for the file /etc/passwd.
+- Permissions: `-rw-r--r--` → owner read/write; group and others read-only.
+- Owner/group: `root root`; Size: bytes; Date/time of last modification.
+- The file stores basic user account entries (username, UID, home, shell).
 
 ---
-**© 2025 Dr. Husam Al-Kanani - Linux Essentials Mid-Term Exam**
+
+### Question 2: Theoretical Knowledge (10 points)
+MCQ: In Linux file permissions, what does the notation "rwx" represent?
+
+Correct answer: **a) read, write, execute**
+
+Justification: `r` = read, `w` = write, `x` = execute. These three bits define access for owner, group, and others on files and directories.
+
+---
+
+© 2025 · Linux Essentials Mid-Term Exam · Answer Key (Sheet A)

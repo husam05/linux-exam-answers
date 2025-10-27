@@ -1,31 +1,32 @@
-# Linux Exam Sheet B - Answer Key
-## Dr. Husam Al-Kanani - Mustafa University
+# Linux Exam Sheet B — Professional Answer Key
+## Dr. Husam Al-Kanani · AlMustafa University
 
-### Question 1: Process Management (10 points)
-**Command:** `ps aux | grep nginx`
+> This key mirrors the exact questions on Sheet B and provides model answers. Outputs shown are examples.
 
-**Expected Output:**
+### Question 1: Practical Command Execution (10 points)
+Command to run:
+
+`whoami`
+
+Expected sample output:
+
 ```
-root     1234  0.0  0.1  12345  6789 ?        Ss   10:00   0:00 nginx: master
-www-data 1235  0.0  0.0  12345  5678 ?        S    10:00   0:00 nginx: worker
+student
 ```
 
-**Explanation:**
-- Shows all nginx processes running on the system
-- Displays process ID, CPU/memory usage, start time
-- Master and worker process architecture
-
-### Question 2: Network Configuration
-**Answer:** Use `ifconfig` or `ip addr` to view network settings
-- IP address configuration
-- Network interface status
-- MAC address information
-
-### Question 3: Service Management
-**Answer:** systemctl commands:
-- `systemctl start service` - Start service
-- `systemctl stop service` - Stop service
-- `systemctl status service` - Check status
+Explanation notes:
+- Prints the username of the effective user running the shell/command.
+- Useful for verifying identity in scripts and when using `sudo`.
 
 ---
-**© 2025 Dr. Husam Al-Kanani - Linux Essentials Mid-Term Exam**
+
+### Question 2: Theoretical Knowledge (10 points)
+MCQ: Which Linux distribution is specifically designed for cybersecurity professionals and penetration testing?
+
+Correct answer: **b) Kali Linux**
+
+Justification: Kali Linux ships with a large suite of security and penetration-testing tools and is tailored for offensive security workflows.
+
+---
+
+© 2025 · Linux Essentials Mid-Term Exam · Answer Key (Sheet B)
