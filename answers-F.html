@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>إجابات ورقة A - جامعة المصطفى</title>
+  <title>إجابات ورقة F - جامعة المصطفى</title>
   <style>
     :root { --bg:#0f172a; --card:#111827; --text:#e5e7eb; --muted:#9ca3af; --brand:#3b82f6; --border:#1f2937; --code:#0b1220; }
     *{box-sizing:border-box}
@@ -29,13 +29,13 @@
     document.addEventListener('DOMContentLoaded', () => {
       try {
         if (localStorage.getItem('examAccess') !== 'ok') {
-          window.location.href = 'student-auth-77.html?sheet=A';
+          window.location.href = 'student-auth-77.html?sheet=F';
           return;
         }
       } catch (e) {}
 
       document.getElementById('backBtn').addEventListener('click', () => {
-        window.location.href = 'student-auth-77.html?sheet=A';
+        window.location.href = 'student-auth-77.html?sheet=F';
       });
       document.getElementById('printBtn').addEventListener('click', () => window.print());
     });
@@ -45,7 +45,7 @@
   <div class="container">
     <header>
       <div class="title">
-        <h1>📋 إجابات ورقة <span id="sheetLabel">A</span></h1>
+        <h1>📋 إجابات ورقة <span id="sheetLabel">F</span></h1>
         <p>جامعة المصطفى - هندسة تقنيات الأمن السيبراني</p>
       </div>
       <div class="controls">
@@ -55,31 +55,32 @@
     </header>
     <main>
       <div class="content">
-        <h1>Linux Exam Sheet A — Professional Answer Key</h1>
+        <h1>Linux Exam Sheet F — Professional Answer Key</h1>
         <h2>Dr. Husam Al-Kanani · AlMustafa University</h2>
-        <blockquote>يماثل هذا المفتاح ورقة الأسئلة A ويوفر حلولًا نموذجية موجزة. قد تختلف نواتج الأوامر باختلاف النظام.</blockquote>
+        <blockquote>يماثل هذا المفتاح ورقة الأسئلة F ويعرض حلولًا نموذجية. نواتج الأوامر أمثلة تقريبية.</blockquote>
 
         <h3>Question 1: Practical Command Execution (10 points)</h3>
-        <p><strong>Command:</strong> <code>ls -l /etc/passwd</code></p>
-        <p><strong>Expected sample output (one line):</strong></p>
-        <pre><code>-rw-r--r-- 1 root root 2847 Oct 15 10:30 /etc/passwd</code></pre>
+        <p><strong>Command:</strong> <code>top</code></p>
+        <p><strong>Expected sample output (excerpt):</strong></p>
+        <pre><code>top - 10:30:25 up 5 days,  2:15,  3 users,  load average: 0.15, 0.25, 0.20
+Tasks: 195 total,   1 running, 194 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  2.3 us,  1.0 sy,  0.0 ni, 96.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :   7892.5 total,   3421.2 free,   2013.0 used,   2458.3 buff/cache</code></pre>
         <p><strong>Explanation notes:</strong></p>
         <ul>
-          <li>يعرض بيانات تفصيلية عن الملف <code>/etc/passwd</code>.</li>
-          <li>الصلاحيات: <code>-rw-r--r--</code> → المالك قراءة/كتابة، المجموعة والآخرون قراءة فقط.</li>
-          <li>يوضح المالك والمجموعة (<code>root root</code>)، الحجم، وتاريخ آخر تعديل.</li>
-          <li>يحتوي الملف على سجلات المستخدمين (اسم المستخدم، UID، الدليل المنزلي، الصدفة).</li>
+          <li>يعرض نظرة لحظية على العمليات الجارية واستخدام الموارد.</li>
+          <li>يوضح استهلاك المعالج، الذاكرة، والعمليات لكل مستخدم.</li>
         </ul>
 
         <hr />
 
         <h3>Question 2: Theoretical Knowledge (10 points)</h3>
-        <p><strong>MCQ:</strong> في صلاحيات لينكس، ماذا تمثل الصيغة <code>rwx</code>؟</p>
-        <p><strong>Correct answer:</strong> <strong>a) read, write, execute</strong></p>
-        <p><strong>Justification:</strong> <code>r</code>=قراءة، <code>w</code>=كتابة، <code>x</code>=تنفيذ. تحدد هذه البتات صلاحيات المالك والمجموعة والآخرين للملفات والمجلدات.</p>
+        <p><strong>MCQ:</strong> ما الغرض الأساسي من الأمر <code>top</code> في إدارة أنظمة لينكس؟</p>
+        <p><strong>Correct answer:</strong> <strong>b) Monitor real-time system processes and resource usage</strong></p>
+        <p><strong>Justification:</strong> يعمل <code>top</code> كأداة مراقبة لحظية للعمليات واستخدام المعالج والذاكرة وحمولة النظام.</p>
 
         <hr />
-        <p>© 2025 · Linux Essentials Mid-Term Exam · Answer Key (Sheet A)</p>
+        <p>© 2025 · Linux Essentials Mid-Term Exam · Answer Key (Sheet F)</p>
       </div>
     </main>
     <footer>

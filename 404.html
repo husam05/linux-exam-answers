@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الصفحة غير موجودة — إعادة التوجيه</title>
+  <meta http-equiv="refresh" content="3; url=index.html" />
+  <style>
+    body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#003366,#0066cc);font-family:Segoe UI, Tahoma, Arial;color:#fff;padding:24px}
+    .card{background:#fff;color:#003366;padding:24px;border-radius:14px;max-width:560px;width:100%;box-shadow:0 10px 30px rgba(0,0,0,.3);text-align:center}
+    h1{margin:0 0 8px;font-size:22px}
+    p{margin:8px 0}
+    a.btn{display:inline-block;margin-top:10px;background:#0066cc;color:#fff;text-decoration:none;padding:10px 14px;border-radius:8px}
+    a.btn:hover{background:#0052a3}
+    small{color:#4c6a8c}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>404 — الصفحة غير موجودة</h1>
+    <p>سيتم تحويلك إلى الصفحة الرئيسية خلال ثوانٍ.</p>
+    <p><small>إذا لم يتم التحويل تلقائياً، اضغط الزر التالي:</small></p>
+    <p><a class="btn" href="index.html">الذهاب إلى الصفحة الرئيسية</a></p>
+  </div>
+  <script>
+    // JS redirect as immediate fallback
+    setTimeout(()=>{ window.location.replace('index.html'); }, 0);
+  </script>
+</body>
+</html>

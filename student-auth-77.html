@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
     <title>نظام الوصول إلى إجابات الامتحان - جامعة المصطفى | هندسة تقنيات الأمن السيبراني</title>
     <style>
         * {
@@ -328,6 +329,9 @@
             document.getElementById('studentInfo').style.display = 'block';
             
             // Show success message with access link
+            // Gate access for answers pages using localStorage (shared across same origin)
+            try { localStorage.setItem('examAccess', 'ok'); } catch(e) {}
+
             const viewerUrl = `answers-${encodeURIComponent(examSheet)}.html`;
             const successMsg = document.getElementById('successMsg');
             successMsg.innerHTML = `
