@@ -328,12 +328,12 @@
             document.getElementById('studentInfo').style.display = 'block';
             
             // Show success message with access link
-            const answerUrl = ANSWER_URLS[examSheet];
+            const viewerUrl = `answers-viewer.html?sheet=${encodeURIComponent(examSheet)}`;
             const successMsg = document.getElementById('successMsg');
             successMsg.innerHTML = `
                 <p><strong>✅ تم التحقق من هويتك بنجاح!</strong></p>
-                <p>يمكنك الآن الوصول إلى إجابات ورقة ${examSheet}</p>
-                <a href="${answerUrl}" target="_blank" class="answer-link">
+                <p>سيتم عرض الإجابات بصيغة HTML احترافية.</p>
+                <a href="${viewerUrl}" target="_blank" class="answer-link">
                     📋 عرض الإجابات لورقة ${examSheet}
                 </a>
             `;

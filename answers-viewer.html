@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>إجابات ورقة الامتحان - جامعة المصطفى</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --brand: #3b82f6;
+      --accent: #10b981;
+      --danger: #ef4444;
+      --code-bg: #0b1220;
+      --border: #1f2937;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 90% -10%, rgba(59,130,246,0.15), transparent),
+                  radial-gradient(800px 400px at 0% 100%, rgba(16,185,129,0.12), transparent),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px;
+    }
+    .container { width: 100%; max-width: 980px; }
+    header {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 20px 24px; margin-bottom: 20px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      backdrop-filter: blur(8px);
+    }
+    .title {
+      display: grid; gap: 2px;
+    }
+    .title h1 { font-size: 20px; margin: 0; }
+    .title p { margin: 0; color: var(--muted); font-size: 13px; }
+    .controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .btn, .select {
+      appearance: none; border: 1px solid var(--border); background: var(--card);
+      color: var(--text); padding: 10px 14px; border-radius: 10px; font-size: 14px;
+    }
+    .btn { cursor: pointer; }
+    .btn:hover { border-color: #334155; }
+    main {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      border: 1px solid var(--border); border-radius: 16px; padding: 20px;
+    }
+    .status { margin: 6px 0 14px; color: var(--muted); font-size: 13px; }
+    .content { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+    .content h1,.content h2,.content h3 { border-right: 3px solid var(--brand); padding-right: 8px; }
+    .content table { width: 100%; border-collapse: collapse; margin: 14px 0; }
+    .content th, .content td { border: 1px solid var(--border); padding: 10px; }
+    .content th { background: #0e1a2e; color: var(--text); }
+    pre, code { direction: ltr; text-align: left; }
+    pre {
+      background: var(--code-bg); color: #e2e8f0; padding: 14px; border-radius: 10px; overflow-x: auto;
+      border: 1px solid #0f1a2b;
+    }
+    code { background: #0e1a2e; padding: 2px 6px; border-radius: 6px; }
+    .error { color: #fecaca; background: #450a0a; border: 1px solid #7f1d1d; padding: 10px 12px; border-radius: 10px; }
+    .muted { color: var(--muted); }
+    footer { margin-top: 16px; color: var(--muted); font-size: 13px; display: flex; justify-content: space-between; }
+    a { color: #93c5fd; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" integrity="sha384-GzE2E1B7u7z1b8bDTG5y8o8m7t8G48VwK3e7w7yN3TknkFzqV8kq2c1k0iZ5n1jv" crossorigin="anonymous"></script>
+  <script>
+    const SHEET_NAMES = { A: 'A', B: 'B', C: 'C', D: 'D', E: 'E', F: 'F' };
+    const ANSWER_MD = {
+      A: 'https://raw.githubusercontent.com/husam05/linux-exam-answers/master/sheet-A-answers.md',
+      B: 'https://raw.githubusercontent.com/husam05/linux-exam-answers/master/sheet-B-answers.md',
+      C: 'https://raw.githubusercontent.com/husam05/linux-exam-answers/master/sheet-C-answers.md',
+      D: 'https://raw.githubusercontent.com/husam05/linux-exam-answers/master/sheet-D-answers.md',
+      E: 'https://raw.githubusercontent.com/husam05/linux-exam-answers/master/sheet-E-answers.md',
+      F: 'https://raw.githubusercontent.com/husam05/linux-exam-answers/master/sheet-F-answers.md',
+    };
+
+    async function loadSheet(sheet) {
+      const status = document.getElementById('status');
+      const content = document.getElementById('content');
+      const select = document.getElementById('sheetSelect');
+      const s = (sheet || '').toUpperCase();
+      if (!SHEET_NAMES[s]) {
+        status.innerHTML = '<span class="error">الورقة غير صحيحة. الرجاء اختيار A–F.</span>';
+        content.innerHTML = '';
+        select.value = '';
+        return;
+      }
+      select.value = s;
+      status.innerHTML = `<span class="muted">جارِ تحميل إجابات ورقة ${s}...</span>`;
+      content.innerHTML = '';
+      try {
+        const res = await fetch(ANSWER_MD[s], { cache: 'no-store' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const md = await res.text();
+        const html = marked.parse(md, { breaks: true, gfm: true });
+        content.innerHTML = html;
+        status.innerHTML = `<span class="muted">تم التحميل ✓</span>`;
+      } catch (err) {
+        console.error(err);
+        status.innerHTML = '<span class="error">تعذّر تحميل الإجابات. تحقق من الاتصال ثم أعد المحاولة.</span>';
+      }
+      const url = new URL(window.location.href);
+      url.searchParams.set('sheet', s);
+      window.history.replaceState({}, '', url);
+      document.title = `إجابات ورقة ${s} - جامعة المصطفى`;
+      document.getElementById('sheetLabel').textContent = s;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const sheet = params.get('sheet') || '';
+      if (sheet) loadSheet(sheet); else loadSheet('A');
+      document.getElementById('sheetSelect').addEventListener('change', (e) => loadSheet(e.target.value));
+      document.getElementById('backBtn').addEventListener('click', () => {
+        window.location.href = 'student-auth-77.html' + window.location.search;
+      });
+    });
+  </script>
+  <!-- Open Graph basic -->
+  <meta property="og:title" content="إجابات ورقة الامتحان - جامعة المصطفى" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ar_AR" />
+  <meta property="og:description" content="عرض احترافي لإجابات أوراق الامتحان (A–F) مع دعم للعربية وتهيئة RTL." />
+  <meta property="og:url" content="https://husam05.github.io/linux-exam-answers/answers-viewer.html" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="title">
+        <h1>📋 إجابات ورقة <span id="sheetLabel">A</span></h1>
+        <p>جامعة المصطفى - هندسة تقنيات الأمن السيبراني</p>
+      </div>
+      <div class="controls">
+        <select id="sheetSelect" class="select">
+          <option value="">اختر ورقة</option>
+          <option value="A">ورقة A</option>
+          <option value="B">ورقة B</option>
+          <option value="C">ورقة C</option>
+          <option value="D">ورقة D</option>
+          <option value="E">ورقة E</option>
+          <option value="F">ورقة F</option>
+        </select>
+        <button id="backBtn" class="btn">🔐 العودة لصفحة التحقق</button>
+      </div>
+    </header>
+    <main>
+      <div id="status" class="status"></div>
+      <div id="content" class="content"></div>
+    </main>
+    <footer>
+      <span>© جامعة المصطفى</span>
+      <span class="muted">ملاحظة: يتم عرض المحتوى بصيغة HTML احترافية</span>
+    </footer>
+  </div>
+  <noscript>
+    <div class="error" style="max-width:980px;margin:16px auto;">
+      يتطلب هذا العرض تفعيل JavaScript لعرض الإجابات بشكل احترافي.
+    </div>
+  </noscript>
+  <!-- Optional: analytics or additional scripts can be added here -->
+  
+  
+  
+</body>
+<!--
+  answers-viewer.html
+  يعرض إجابات كل ورقة (A–F) بشكل HTML احترافي عبر جلب ملفات Markdown من GitHub وتحويلها باستخدام marked.js
+-->
+</html>
