@@ -70,14 +70,31 @@
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" integrity="sha384-GzE2E1B7u7z1b8bDTG5y8o8m7t8G48VwK3e7w7yN3TknkFzqV8kq2c1k0iZ5n1jv" crossorigin="anonymous"></script>
   <script>
     const SHEET_NAMES = { A: 'A', B: 'B', C: 'C', D: 'D', E: 'E', F: 'F' };
-    const ANSWER_MD = {
-      A: 'https://raw.githubusercontent.com/husam05/linux-exam-answers/master/sheet-A-answers.md',
-      B: 'https://raw.githubusercontent.com/husam05/linux-exam-answers/master/sheet-B-answers.md',
-      C: 'https://raw.githubusercontent.com/husam05/linux-exam-answers/master/sheet-C-answers.md',
-      D: 'https://raw.githubusercontent.com/husam05/linux-exam-answers/master/sheet-D-answers.md',
-      E: 'https://raw.githubusercontent.com/husam05/linux-exam-answers/master/sheet-E-answers.md',
-      F: 'https://raw.githubusercontent.com/husam05/linux-exam-answers/master/sheet-F-answers.md',
-    };
+    const fileName = (s) => `sheet-${s}-answers.md`;
+    const candidates = (s) => [
+      `https://cdn.jsdelivr.net/gh/husam05/linux-exam-answers@master/${fileName(s)}`,
+      `https://raw.githubusercontent.com/husam05/linux-exam-answers/master/${fileName(s)}`,
+    ];
+
+    async function fetchWithFallback(urls) {
+      let lastErr;
+      for (const url of urls) {
+        try {
+          const res = await fetch(url, {
+            cache: 'no-store',
+            mode: 'cors',
+            headers: { 'Accept': 'text/plain; charset=utf-8' }
+          });
+          if (res.ok) {
+            return await res.text();
+          }
+          lastErr = new Error('HTTP ' + res.status);
+        } catch (e) {
+          lastErr = e;
+        }
+      }
+      throw lastErr || new Error('Fetch failed');
+    }
 
     async function loadSheet(sheet) {
       const status = document.getElementById('status');
@@ -94,9 +111,7 @@
       status.innerHTML = `<span class="muted">جارِ تحميل إجابات ورقة ${s}...</span>`;
       content.innerHTML = '';
       try {
-        const res = await fetch(ANSWER_MD[s], { cache: 'no-store' });
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        const md = await res.text();
+        const md = await fetchWithFallback(candidates(s));
         const html = marked.parse(md, { breaks: true, gfm: true });
         content.innerHTML = html;
         status.innerHTML = `<span class="muted">تم التحميل ✓</span>`;
