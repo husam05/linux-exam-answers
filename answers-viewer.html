@@ -119,6 +119,8 @@
       document.getElementById('backBtn').addEventListener('click', () => {
         window.location.href = 'student-auth-77.html' + window.location.search;
       });
+      const printBtn = document.getElementById('printBtn');
+      if (printBtn) printBtn.addEventListener('click', () => window.print());
     });
   </script>
   <!-- Open Graph basic -->
@@ -146,6 +148,7 @@
           <option value="F">ورقة F</option>
         </select>
         <button id="backBtn" class="btn">🔐 العودة لصفحة التحقق</button>
+        <button id="printBtn" class="btn">🖨️ طباعة / حفظ PDF</button>
       </div>
     </header>
     <main>
