@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام الوصول إلى إجابات الامتحان - جامعة أندرا</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #003366 0%, #0066cc 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            direction: rtl;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .header {
+            background: #003366;
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: right;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            text-align: right;
+            direction: rtl;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: #0066cc;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        .btn {
+            background: #0066cc;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: #0052a3;
+        }
+
+        .student-info {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-right: 4px solid #0066cc;
+            display: none;
+        }
+
+        .student-info h3 {
+            color: #003366;
+            margin-bottom: 0.5rem;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-right: 4px solid #dc3545;
+            display: none;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-right: 4px solid #28a745;
+            display: none;
+        }
+
+        .answer-link {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .answer-link:hover {
+            background: #218838;
+        }
+
+        .footer {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 نظام إجابات الامتحان</h1>
+            <p>إدارة أنظمة لينكس - جامعة أندرا</p>
+        </div>
+
+        <form id="authForm">
+            <div class="form-group">
+                <label for="studentId">رقم الطالب (1-77):</label>
+                <input type="number" id="studentId" min="1" max="77" required 
+                       placeholder="أدخل رقم الطالب الخاص بك">
+            </div>
+
+            <div class="form-group">
+                <label for="examSheet">ورقة الامتحان:</label>
+                <select id="examSheet" required>
+                    <option value="">اختر ورقة الامتحان</option>
+                    <option value="A">ورقة A</option>
+                    <option value="B">ورقة B</option>
+                    <option value="C">ورقة C</option>
+                    <option value="D">ورقة D</option>
+                    <option value="E">ورقة E</option>
+                    <option value="F">ورقة F</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn">🔍 التحقق من الهوية والوصول للإجابات</button>
+        </form>
+
+        <div id="studentInfo" class="student-info">
+            <h3>مرحباً بك:</h3>
+            <p id="studentName"></p>
+            <p><strong>رقم الطالب:</strong> <span id="displayId"></span></p>
+            <p><strong>ورقة الامتحان:</strong> <span id="displaySheet"></span></p>
+        </div>
+
+        <div id="errorMsg" class="error"></div>
+        <div id="successMsg" class="success"></div>
+
+        <div class="footer">
+            <p>🔒 نظام آمن لإجابات امتحان إدارة أنظمة لينكس</p>
+            <p>جامعة أندرا - كلية الحاسوب</p>
+        </div>
+    </div>
+
+    <script>
+        // Database of 77 students
+        const STUDENTS = {
+            1: "احمد سعدون جبار لفتة",
+            2: "احمد مثنى غازي سليم",
+            3: "احمد ناطق جميل صادق",
+            4: "احمد وسام عبد الصاحب عبد الله",
+            5: "الزهراء حسنين محمد عبد الرضا",
+            6: "ايثار عامر احمد زيدان",
+            7: "تبارك صاحب فهد خليفه",
+            8: "حسن سعد فرحان علي",
+            9: "حسن علي عجرم حسين",
+            10: "حسين بادي عجرش جويد",
+            11: "حسين رائد زوير عليوي",
+            12: "حسين رسول فرج نافض",
+            13: "حمزه حيدر حمزة صادق",
+            14: "حيدر عباس فاضل عباس",
+            15: "حيدر عدي داخل رشم",
+            16: "حيدر علي حسن مهنا",
+            17: "ختام رزاق حاتم زوير",
+            18: "رضا عدنان رضا مراد",
+            19: "رقية عادل عباس شايع",
+            20: "رقيه اياد مذكور عزيز",
+            21: "ريام علي حسين علي",
+            22: "ريام ماجد كاظم جواد",
+            23: "زهراء انور سلمان سعيد",
+            24: "زينب طالب جاسم سلمان",
+            25: "سجاد خماس حيدر حافظ",
+            26: "سجاد سعد كريم حسن",
+            27: "شهيناز محسن جاسم خلف",
+            28: "شيماء حسن عبيد سيلان",
+            29: "ضي مهدي صالح جابر",
+            30: "طه اسامه باسم مهدي",
+            31: "عباس كامل جلوب حرفش",
+            32: "عبد الجبار فارس عبد الجبار عبد",
+            33: "عبد العزيز طاهر صالح احمد",
+            34: "عبد الله بشير مبارك محمد",
+            35: "عبد الله حميد فليح حسن",
+            36: "عبد الله علاء عادل حسن",
+            37: "علي احمد مصطفى عبد الله",
+            38: "علي جاسم سالم عصيده",
+            39: "علي جمال ناصر عبد",
+            40: "علي حاتم زرع الله فرهود",
+            41: "علي حسام عبد العزيز صدام",
+            42: "علي قاسم حمود جابر",
+            43: "علي وسام ناظم جنيت",
+            44: "عمار ابراهيم حمدي عباس",
+            45: "فاضل ابراهيم فاضل محمد",
+            46: "فاضل زيدان خوف الله حسن",
+            47: "فاطمه عادل عباس شايع",
+            48: "فرح علي حسين مزعل",
+            49: "كرار حسن عبد الرضا سوادي",
+            50: "كرار عباس رحيم جاسم",
+            51: "كرار علاء مهدي شلش",
+            52: "مازن احمد سهام اسماعيل",
+            53: "مجتبى سليم أرزيج سالم",
+            54: "محمد الصادق علي جادر عبد",
+            55: "محمد باقر ماجد سيد حسين",
+            56: "محمد جاسم محمد عبد",
+            57: "محمد رياض حسين عبد الله",
+            58: "محمد عامر عباس سعيد",
+            59: "محمد علاء حسين خنيصر",
+            60: "محمد علي عبد المجيد رشيد",
+            61: "محمد علي نعثل حنين",
+            62: "محمد قيصر فاضل مهلهل",
+            63: "مصدق رحيم عطيه علي",
+            64: "مصطفى جاسم محمد زبون",
+            65: "مصطفى خليل ابراهيم عبد الكريم",
+            66: "مصطفى كاظم ثويني مذبوب",
+            67: "مصطفى كامل عبد الامير مجيد",
+            68: "مصطفى ماهر عبد العباس علي",
+            69: "منتظر حمود حسين ربيع",
+            70: "منتظر علي حسين علوان",
+            71: "موسى شاكر كحيط كريم",
+            72: "نغم عبد اللطيف محمود علي",
+            73: "نور مهند عبد الكريم شغيدل",
+            74: "وسن عبد الستار عبد الرسول فرحان",
+            75: "ولاء سالم جاسم سالم",
+            76: "يزن علي غازي عبد الحسين",
+            77: "يوسف احمد حسن علي"
+        };
+
+        // Answer URLs for each sheet
+        const ANSWER_URLS = {
+            'A': 'https://raw.githubusercontent.com/husam05/linux-exam-answers/master/sheet-A-answers.md',
+            'B': 'https://raw.githubusercontent.com/husam05/linux-exam-answers/master/sheet-B-answers.md',
+            'C': 'https://raw.githubusercontent.com/husam05/linux-exam-answers/master/sheet-C-answers.md',
+            'D': 'https://raw.githubusercontent.com/husam05/linux-exam-answers/master/sheet-D-answers.md',
+            'E': 'https://raw.githubusercontent.com/husam05/linux-exam-answers/master/sheet-E-answers.md',
+            'F': 'https://raw.githubusercontent.com/husam05/linux-exam-answers/master/sheet-F-answers.md'
+        };
+
+        document.getElementById('authForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const studentId = parseInt(document.getElementById('studentId').value);
+            const examSheet = document.getElementById('examSheet').value;
+            
+            // Clear previous messages
+            document.getElementById('studentInfo').style.display = 'none';
+            document.getElementById('errorMsg').style.display = 'none';
+            document.getElementById('successMsg').style.display = 'none';
+            
+            // Validate student ID
+            if (!studentId || studentId < 1 || studentId > 77) {
+                showError('رقم الطالب غير صحيح. يجب أن يكون بين 1 و 77.');
+                return;
+            }
+            
+            // Validate exam sheet
+            if (!examSheet) {
+                showError('يرجى اختيار ورقة الامتحان.');
+                return;
+            }
+            
+            // Check if student exists
+            if (!STUDENTS[studentId]) {
+                showError('رقم الطالب غير موجود في النظام.');
+                return;
+            }
+            
+            // Show student info
+            const studentName = STUDENTS[studentId];
+            document.getElementById('studentName').textContent = studentName;
+            document.getElementById('displayId').textContent = studentId;
+            document.getElementById('displaySheet').textContent = 'ورقة ' + examSheet;
+            document.getElementById('studentInfo').style.display = 'block';
+            
+            // Show success message with access link
+            const answerUrl = ANSWER_URLS[examSheet];
+            const successMsg = document.getElementById('successMsg');
+            successMsg.innerHTML = `
+                <p><strong>✅ تم التحقق من هويتك بنجاح!</strong></p>
+                <p>يمكنك الآن الوصول إلى إجابات ورقة ${examSheet}</p>
+                <a href="${answerUrl}" target="_blank" class="answer-link">
+                    📋 عرض الإجابات لورقة ${examSheet}
+                </a>
+            `;
+            successMsg.style.display = 'block';
+            
+            // Log access
+            console.log(`Student access: ID=${studentId}, Name=${studentName}, Sheet=${examSheet}, Time=${new Date()}`);
+        });
+        
+        function showError(message) {
+            const errorMsg = document.getElementById('errorMsg');
+            errorMsg.textContent = message;
+            errorMsg.style.display = 'block';
+        }
+        
+        // Auto-fill from URL parameters (for QR code access)
+        window.addEventListener('load', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const sheet = urlParams.get('sheet');
+            if (sheet && ANSWER_URLS[sheet.toUpperCase()]) {
+                document.getElementById('examSheet').value = sheet.toUpperCase();
+            }
+        });
+    </script>
+</body>
+</html>
