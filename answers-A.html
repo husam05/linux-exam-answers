@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>إجابات ورقة A - جامعة المصطفى</title>
+  <style>
+    :root { --bg:#0f172a; --card:#111827; --text:#e5e7eb; --muted:#9ca3af; --brand:#3b82f6; --border:#1f2937; --code:#0b1220; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans; background:var(--bg); color:var(--text); min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px}
+    .container{width:100%;max-width:980px}
+    header{display:flex;justify-content:space-between;gap:8px;align-items:center; background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02)); border:1px solid var(--border); border-radius:14px; padding:16px 20px; margin-bottom:16px}
+    .title h1{margin:0;font-size:20px}
+    .title p{margin:2px 0 0;color:var(--muted);font-size:13px}
+    .controls{display:flex;gap:8px;flex-wrap:wrap}
+    .btn{appearance:none;border:1px solid var(--border);background:#0e1626;color:var(--text);padding:10px 14px;border-radius:10px;cursor:pointer}
+    main{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02)); border:1px solid var(--border); border-radius:14px; padding:16px}
+    .content{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px}
+    .content h1,.content h2,.content h3{border-right:3px solid var(--brand); padding-right:8px}
+    pre{background:var(--code); color:#e2e8f0; padding:12px; border-radius:10px; overflow:auto; direction:ltr; text-align:left; border:1px solid #0f1a2b}
+    code{background:#0e1a2e; padding:2px 6px; border-radius:6px}
+    table{width:100%;border-collapse:collapse;margin:12px 0}
+    th,td{border:1px solid var(--border);padding:8px}
+    footer{margin-top:10px;color:var(--muted);display:flex;justify-content:space-between;font-size:13px}
+  </style>
+  <script>
+    function escapeHtml(s){return s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]))}
+    function mdToHtml(md){
+      md = md.replace(/\r\n?/g,'\n');
+      md = md.replace(/```([\s\S]*?)```/g,(m,code)=>`<pre><code>${escapeHtml(code).trim()}</code></pre>`);
+      for(let i=6;i>=1;i--){const re=new RegExp(`^${"#".repeat(i)}\\s+(.+)$`,`gm`);md=md.replace(re,(m,t)=>`<h${i}>${t}</h${i}>`)}
+      md = md.replace(/^---$/gm,'<hr />');
+      md = md.replace(/(^|\n)(\d+)\.\s+(.+)(?=\n(?!\d+\.\s)|$)/g,(m,prefix,num,item)=>`${prefix}<ol><li>${item}</li></ol>`);
+      md = md.replace(/(^|\n)-\s+(.+)(?=\n(?!-\s)|$)/g,(m,prefix,item)=>`${prefix}<ul><li>${item}</li></ul>`);
+      md = md.replace(/`([^`]+)`/g,(m,code)=>`<code>${escapeHtml(code)}</code>`);
+      md = md.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>').replace(/\*([^*]+)\*/g,'<em>$1</em>');
+      md = md.split(/\n\n+/).map(block=>/^(<h\d|<pre|<ul>|<ol>|<hr)/.test(block)?block:`<p>${block.replace(/\n/g,'<br/>')}</p>`).join('\n');
+      return md;
+    }
+    function render(){
+      const md=document.getElementById('md').textContent; 
+      document.getElementById('content').innerHTML=mdToHtml(md);
+      document.getElementById('sheetLabel').textContent='A';
+      document.title='إجابات ورقة A - جامعة المصطفى';
+    }
+    document.addEventListener('DOMContentLoaded',()=>{
+      document.getElementById('backBtn').addEventListener('click',()=>{ window.location.href='student-auth-77.html?sheet=A'; });
+      document.getElementById('printBtn').addEventListener('click',()=>window.print());
+      render();
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="title">
+        <h1>📋 إجابات ورقة <span id="sheetLabel">A</span></h1>
+        <p>جامعة المصطفى - هندسة تقنيات الأمن السيبراني</p>
+      </div>
+      <div class="controls">
+        <button id="backBtn" class="btn">🔐 العودة لصفحة التحقق</button>
+        <button id="printBtn" class="btn">🖨️ طباعة / حفظ PDF</button>
+      </div>
+    </header>
+    <main>
+      <div id="content" class="content"></div>
+    </main>
+    <footer>
+      <span>© جامعة المصطفى</span>
+      <span>عرض ثابت HTML بدون جلب خارجي</span>
+    </footer>
+  </div>
+  <script type="text/markdown" id="md"># Linux Exam Sheet A — Professional Answer Key
+## Dr. Husam Al-Kanani ·
+...
+### Question 1: Practical Command Execution (10 points)
+Command to
+run:
+
+`ls -l /etc/passwd`
+
+Expected sample output (one line):
+
+```
+-rw-r--r-- 1 root
+root 2847 Oct 15 10:30 /etc/passwd
+```
+
+Explanation notes:
+- Shows detailed
+metadata for the file /etc/passwd.
+- Permissions: `-rw-r--r--` → owner read/write;
+group and others read-only.
+- Owner/group: `root root`; Size: bytes; Date/time of
+last modification.
+- The file stores basic user account entries (username, UID,
+home, shell).
+
+---
+
+...
+ # Linux Exam Sheet A — Professional Answer Key
+## Dr. Husam Al-Kanani ·
+...
+### Question 2: Theoretical Knowledge (10 points)
+MCQ: In
+Linux file permissions, what does the notation "rwx" represent?
+
+Correct answer:
+**a) read, write, execute**
+
+Justification: `r` = read, `w` = write, `x` =
+execute. These three bits define access for owner, group, and others on files and
+directories.
+
+---
+
+© 2025 · Linux Essentials Mid-Term Exam · Answer Key (Sheet A)
+ # Linux Exam Sheet A — Professional Answer Key
+## Dr. Husam Al-Kanani ·
+AlMustafa University
+
+> This key mirrors the exact questions on Sheet A and provides
+concise model answers. Command outputs are examples; actual values may differ per
+system.
+
+### Question 1: Practical Command Execution (10 points)
+...
+### Question 2: Theoretical Knowledge (10 points)
+...
+  </script>
+</body>
+</html>
