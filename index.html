@@ -3,350 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نظام الوصول إلى إجابات الامتحان - جامعة المصطفى</title>
+    <title>🔁 تحويل إلى صفحة التحقق | إجابات الامتحان</title>
+    <meta http-equiv="refresh" content="5; url=student-auth-77.html">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: linear-gradient(135deg, #003366 0%, #0066cc 100%); 
+            min-height: 100vh; display:flex; align-items:center; justify-content:center; color:#fff; 
+            margin:0; padding:20px; text-align:center; 
         }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #003366 0%, #0066cc 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            direction: rtl;
-        }
-
-        .container {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-        }
-
-        .header {
-            background: #003366;
-            color: white;
-            padding: 1rem;
-            border-radius: 10px;
-            margin-bottom: 2rem;
-        }
-
-        .header h1 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .header p {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        .sheet-info {
-            background: #e8f4f8;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            border: 2px solid #0066cc;
-        }
-
-        .sheet-info h2 {
-            color: #003366;
-            margin-bottom: 0.5rem;
-        }
-
-        .auth-form {
-            margin-bottom: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-            text-align: right;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-            color: #003366;
-        }
-
-        input[type="number"] {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            text-align: center;
-            transition: border-color 0.3s;
-        }
-
-        input[type="number"]:focus {
-            outline: none;
-            border-color: #0066cc;
-        }
-
-        .btn {
-            background: #0066cc;
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.3s;
-            width: 100%;
-            margin-bottom: 1rem;
-        }
-
-        .btn:hover {
-            background: #003366;
-        }
-
-        .student-info {
-            display: none;
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin-bottom: 2rem;
-            border: 2px solid #0066cc;
-        }
-
-        .student-info.show {
-            display: block;
-        }
-
-        .student-name {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #003366;
-            margin-bottom: 1rem;
-        }
-
-        .qr-access {
-            display: none;
-            background: #e8f5e8;
-            padding: 1.5rem;
-            border-radius: 10px;
-            border: 2px solid #28a745;
-        }
-
-        .qr-access.show {
-            display: block;
-        }
-
-        .answer-link {
-            background: #28a745;
-            color: white;
-            padding: 1rem;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: background 0.3s;
-            display: block;
-            margin-top: 1rem;
-        }
-
-        .answer-link:hover {
-            background: #1e7e34;
-        }
-
-        .error {
-            color: #dc3545;
-            background: #f8d7da;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            display: none;
-        }
-
-        .success {
-            color: #155724;
-            background: #d4edda;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            display: none;
-        }
-
-        .footer {
-            margin-top: 2rem;
-            font-size: 0.8rem;
-            color: #666;
-        }
+        .card { background:#ffffff; color:#003366; padding:2rem; border-radius:14px; max-width:560px; width:100%; box-shadow:0 10px 30px rgba(0,0,0,0.3); }
+        .card h1 { margin-top:0; font-size:1.6rem; }
+        .card p { margin:0.6rem 0; }
+        .btn { display:inline-block; margin-top:1rem; background:#0066cc; color:#fff; padding:0.8rem 1.2rem; border-radius:8px; text-decoration:none; }
+        .btn:hover { background:#0052a3; }
+        small { color:#4c6a8c }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>جامعة المصطفى</h1>
-            <p>كلية الهندسة التقنية للأمن السيبراني</p>
-            <p>نظام الوصول الآمن إلى إجابات الامتحان</p>
-        </div>
-
-        <div class="sheet-info">
-            <h2 id="sheetTitle">ورقة الامتحان</h2>
-            <p>امتحان أساسيات Linux - الامتحان النصفي</p>
-            <p>الدكتور حسام الكناني</p>
-        </div>
-
-        <form class="auth-form" id="authForm">
-            <div class="form-group">
-                <label for="studentId">رقم الطالب:</label>
-                <input type="number" id="studentId" name="studentId" min="1" max="77" required 
-                       placeholder="أدخل رقمك من 1 إلى 77">
-            </div>
-
-            <button type="submit" class="btn" id="submitBtn">الوصول إلى الإجابات</button>
-        </form>
-
-        <div class="error" id="error"></div>
-        <div class="success" id="success"></div>
-
-        <div class="student-info" id="studentInfo">
-            <div class="student-name" id="studentName"></div>
-            <p>تم التحقق من هويتك بنجاح. يمكنك الآن الوصول إلى إجابات الامتحان.</p>
-        </div>
-
-        <div class="qr-access" id="qrAccess">
-            <h3>الوصول إلى الإجابات:</h3>
-            <a href="#" id="answerLink" class="answer-link" target="_blank">
-                إجابات ورقة الامتحان
-            </a>
-            <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">
-                ملاحظة: سيتم فتح إجابات الامتحان في نافذة جديدة
-            </p>
-        </div>
-
-        <div class="footer">
-            <p>© 2025 جامعة المصطفى - نظام آمن للوصول إلى إجابات الامتحان</p>
-            <p>الدكتور حسام الكناني - امتحان أساسيات Linux</p>
-        </div>
+    <div class="card">
+        <h1>يتم الآن تحويلك إلى صفحة التحقق الآمن للطلاب</h1>
+        <p>ستنتقل تلقائياً خلال ثوانٍ إلى صفحة <strong>التحقق من الهوية</strong> للوصول إلى الإجابات.</p>
+        <p><small>إذا لم يتم التحويل تلقائياً، اضغط على الزر التالي:</small></p>
+        <p><a id="redirect" class="btn" href="student-auth-77.html">الانتقال إلى صفحة التحقق</a></p>
     </div>
 
     <script>
-        // Student database
-        const STUDENTS = {
-            1: "احمد سعدون جبار لفتة", 2: "احمد مثنى غازي سليم", 3: "احمد ناطق جميل صادق",
-            4: "احمد وسام عبد الصاحب عبد الله", 5: "الزهراء حسنين محمد عبد الرضا", 6: "ايثار عامر احمد زيدان",
-            7: "تبارك صاحب فهد خليفه", 8: "حسن سعد فرحان علي", 9: "حسن علي عجرم حسين", 
-            10: "حسين بادي عجرش جويد", 11: "حسين رائد زوير عليوي", 12: "حسين رسول فرج نافض",
-            13: "حمزه حيدر حمزة صادق", 14: "حيدر عباس فاضل عباس", 15: "حيدر عدي داخل رشم",
-            16: "حيدر علي حسن مهنا", 17: "ختام رزاق حاتم زوير", 18: "رضا عدنان رضا مراد",
-            19: "رقية عادل عباس شايع", 20: "رقيه اياد مذكور عزيز", 21: "ريام علي حسين علي",
-            22: "ريام ماجد كاظم جواد", 23: "زهراء انور سلمان سعيد", 24: "زينب طالب جاسم سلمان",
-            25: "سجاد خماس حيدر حافظ", 26: "سجاد سعد كريم حسن", 27: "شهيناز محسن جاسم خلف",
-            28: "شيماء حسن عبيد سيلان", 29: "ضي مهدي صالح جابر", 30: "طه اسامه باسم مهدي",
-            31: "عباس كامل جلوب حرفش", 32: "عبد الجبار فارس عبد الجبار عبد", 33: "عبد العزيز طاهر صالح احمد",
-            34: "عبد الله بشير مبارك محمد", 35: "عبد الله حميد فليح حسن", 36: "عبد الله علاء عادل حسن",
-            37: "علي احمد مصطفى عبد الله", 38: "علي جاسم سالم عصيده", 39: "علي جمال ناصر عبد",
-            40: "علي حاتم زرع الله فرهود", 41: "علي حسام عبد العزيز صدام", 42: "علي قاسم حمود جابر",
-            43: "علي وسام ناظم جنيت", 44: "عمار ابراهيم حمدي عباس", 45: "فاضل ابراهيم فاضل محمد",
-            46: "فاضل زيدان خوف الله حسن", 47: "فاطمه عادل عباس شايع", 48: "فرح علي حسين مزعل",
-            49: "كرار حسن عبد الرضا سوادي", 50: "كرار عباس رحيم جاسم", 51: "كرار علاء مهدي شلش",
-            52: "مازن احمد سهام اسماعيل", 53: "مجتبى سليم أرزيج سالم", 54: "محمد الصادق علي جادر عبد",
-            55: "محمد باقر ماجد سيد حسين", 56: "محمد جاسم محمد عبد", 57: "محمد رياض حسين عبد الله",
-            58: "محمد عامر عباس سعيد", 59: "محمد علاء حسين خنيصر", 60: "محمد علي عبد المجيد رشيد",
-            61: "محمد مهدي جبار كاظم", 62: "محمود احمد محمود احمد", 63: "مرتضى علي حسين علي",
-            64: "مصطفى قاسم طعمة سلمان", 65: "مصطفى كريم جاسم محمد", 66: "معتز عباس فاضل جواد",
-            67: "منتظر عباس علي حسين", 68: "مهدي صالح مهدي فليح", 69: "نبراس حسين علي مجيد",
-            70: "نور الدين حسن علي حسن", 71: "نور الهدى عامر شاكر محمود", 72: "نور علي حميد مجيد",
-            73: "نور مهند عبد الكريم شغيدل", 74: "وسن عبد الستار عبد الرسول فرحان", 75: "ولاء سالم جاسم سالم",
-            76: "يزن علي غازي عبد الحسين", 77: "يوسف احمد حسن علي"
-        };
-
-        // Answer URLs - GitHub Raw Content (works with public repos)
-        const ANSWER_URLS = {
-            'A': 'https://raw.githubusercontent.com/husam05/linux-exam-answers/master/sheet-A-answers.md',
-            'B': 'https://raw.githubusercontent.com/husam05/linux-exam-answers/master/sheet-B-answers.md',
-            'C': 'https://raw.githubusercontent.com/husam05/linux-exam-answers/master/sheet-C-answers.md',
-            'D': 'https://raw.githubusercontent.com/husam05/linux-exam-answers/master/sheet-D-answers.md',
-            'E': 'https://raw.githubusercontent.com/husam05/linux-exam-answers/master/sheet-E-answers.md',
-            'F': 'https://raw.githubusercontent.com/husam05/linux-exam-answers/master/sheet-F-answers.md'
-        };
-
-        // Get exam sheet from URL parameter
-        const urlParams = new URLSearchParams(window.location.search);
-        const examSheet = urlParams.get('sheet') || 'A';
-        
-        // Update sheet title
-        document.getElementById('sheetTitle').textContent = `ورقة الامتحان: ${examSheet}`;
-        
-        document.getElementById('authForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const studentId = parseInt(document.getElementById('studentId').value);
-            
-            if (!studentId || studentId < 1 || studentId > 77) {
-                showError('يرجى إدخال رقم طالب صحيح من 1 إلى 77.');
-                return;
+        // Preserve the `sheet` query parameter when redirecting (e.g., ?sheet=A)
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            const sheet = params.get('sheet');
+            let target = 'student-auth-77.html';
+            if (sheet) {
+                target += '?sheet=' + encodeURIComponent(sheet.toUpperCase());
             }
-            
-            if (!STUDENTS[studentId]) {
-                showError('رقم الطالب غير موجود في قاعدة البيانات.');
-                return;
-            }
-            
-            const studentName = STUDENTS[studentId];
-            const answerUrl = ANSWER_URLS[examSheet];
-            
-            if (!answerUrl) {
-                showError('ورقة الامتحان غير صحيحة.');
-                return;
-            }
-            
-            // Show student info
-            document.getElementById('studentName').textContent = `مرحباً ${studentName}`;
-            document.getElementById('studentInfo').classList.add('show');
-            
-            // Setup answer link
-            const answerLink = document.getElementById('answerLink');
-            answerLink.href = answerUrl;
-            answerLink.innerHTML = `
-                إجابات ورقة الامتحان ${examSheet}
-                <br>
-                <small>للطالب: ${studentName}</small>
-            `;
-            
-            document.getElementById('qrAccess').classList.add('show');
-            
-            showSuccess(`تم التحقق من هويتك بنجاح يا ${studentName}. يمكنك الآن الوصول إلى إجابات ورقة الامتحان ${examSheet}.`);
-            
-            // Log access (you can implement server-side logging if needed)
-            console.log(`Access: Student ID ${studentId} (${studentName}) accessed sheet ${examSheet}`);
-        });
-        
-        function showError(message) {
-            const errorDiv = document.getElementById('error');
-            errorDiv.textContent = message;
-            errorDiv.style.display = 'block';
-            hideSuccess();
-        }
-        
-        function showSuccess(message) {
-            const successDiv = document.getElementById('success');
-            successDiv.textContent = message;
-            successDiv.style.display = 'block';
-            hideError();
-        }
-        
-        function hideError() {
-            document.getElementById('error').style.display = 'none';
-        }
-        
-        function hideSuccess() {
-            document.getElementById('success').style.display = 'none';
-        }
-        
-        // Auto-focus on student ID input
-        document.getElementById('studentId').focus();
+            document.getElementById('redirect').href = target;
+            // Use JS redirect for immediate navigation; meta refresh remains as fallback
+            window.location.replace(target);
+        })();
     </script>
 </body>
 </html>
