@@ -57,7 +57,7 @@
       <div class="content">
         <h1>Linux Exam Sheet A — Professional Answer Key</h1>
         <h2>Dr. Husam Al-Kanani · AlMustafa University</h2>
-        <blockquote>يماثل هذا المفتاح ورقة الأسئلة A ويوفر حلولًا نموذجية موجزة. قد تختلف نواتج الأوامر باختلاف النظام.</blockquote>
+        <blockquote>This key mirrors Sheet A exactly. Sample outputs are illustrative; your system values may differ.</blockquote>
 
         <h3>Question 1: Practical Command Execution (10 points)</h3>
         <p><strong>Command:</strong> <code>ls -l /etc/passwd</code></p>
@@ -65,18 +65,18 @@
         <pre><code>-rw-r--r-- 1 root root 2847 Oct 15 10:30 /etc/passwd</code></pre>
         <p><strong>Explanation notes:</strong></p>
         <ul>
-          <li>يعرض بيانات تفصيلية عن الملف <code>/etc/passwd</code>.</li>
-          <li>الصلاحيات: <code>-rw-r--r--</code> → المالك قراءة/كتابة، المجموعة والآخرون قراءة فقط.</li>
-          <li>يوضح المالك والمجموعة (<code>root root</code>)، الحجم، وتاريخ آخر تعديل.</li>
-          <li>يحتوي الملف على سجلات المستخدمين (اسم المستخدم، UID، الدليل المنزلي، الصدفة).</li>
+          <li>Displays detailed metadata for <code>/etc/passwd</code> including permissions, owner, size, and timestamp.</li>
+          <li>Permissions string <code>-rw-r--r--</code> means the owner can read/write, while group and others can only read.</li>
+          <li>Shows owner and group (<code>root root</code>) plus file size and last modification time.</li>
+          <li><code>/etc/passwd</code> stores core user account records (username, UID, home directory, default shell).</li>
         </ul>
 
         <hr />
 
         <h3>Question 2: Theoretical Knowledge (10 points)</h3>
-        <p><strong>MCQ:</strong> في صلاحيات لينكس، ماذا تمثل الصيغة <code>rwx</code>؟</p>
+        <p><strong>MCQ:</strong> In Linux file permissions, what does <code>rwx</code> represent?</p>
         <p><strong>Correct answer:</strong> <strong>a) read, write, execute</strong></p>
-        <p><strong>Justification:</strong> <code>r</code>=قراءة، <code>w</code>=كتابة، <code>x</code>=تنفيذ. تحدد هذه البتات صلاحيات المالك والمجموعة والآخرين للملفات والمجلدات.</p>
+        <p><strong>Justification:</strong> The three bits map to read, write, and execute permissions respectively for owner, group, and others.</p>
 
         <hr />
         <p>© 2025 · Linux Essentials Mid-Term Exam · Answer Key (Sheet A)</p>
