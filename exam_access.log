@@ -7,3 +7,84 @@
 2025-10-27 05:26:52,858 - WARNING -  * Debugger is active!
 2025-10-27 05:26:52,863 - INFO -  * Debugger PIN: 184-713-587
 2025-10-27 05:27:09,669 - INFO - 127.0.0.1 - - [27/Oct/2025 05:27:09] "GET /?sheet=A&id=922e00df-0448-43a4-ae29-7c5d00d56208&vscodeBrowserReqId=1761523029316 HTTP/1.1" 200 -
+2025-10-27 05:40:25,212 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.102:5000
+2025-10-27 05:40:25,276 - INFO - [33mPress CTRL+C to quit[0m
+2025-10-27 05:40:25,278 - INFO -  * Restarting with stat
+2025-10-27 05:40:25,622 - WARNING -  * Debugger is active!
+2025-10-27 05:40:25,626 - INFO -  * Debugger PIN: 184-713-587
+2025-10-27 05:40:35,565 - INFO - 127.0.0.1 - - [27/Oct/2025 05:40:35] "GET /?sheet=A&id=bc88287b-3588-4cbb-98d9-9ccef12d39f9&vscodeBrowserReqId=1761523835224 HTTP/1.1" 200 -
+2025-10-27 05:40:47,983 - INFO - 127.0.0.1 - - [27/Oct/2025 05:40:47] "GET /?sheet=B&id=bc88287b-3588-4cbb-98d9-9ccef12d39f9&vscodeBrowserReqId=1761523847978 HTTP/1.1" 200 -
+2025-10-27 05:40:59,120 - INFO - 127.0.0.1 - - [27/Oct/2025 05:40:59] "GET /?sheet=F&id=bc88287b-3588-4cbb-98d9-9ccef12d39f9&vscodeBrowserReqId=1761523858800 HTTP/1.1" 200 -
+2025-10-27 05:41:03,344 - INFO - 127.0.0.1 - - [27/Oct/2025 05:41:03] "GET /logs?id=bc88287b-3588-4cbb-98d9-9ccef12d39f9&vscodeBrowserReqId=1761523863323 HTTP/1.1" 200 -
+2025-10-27 05:43:26,467 - INFO -  * Detected change in 'C:\\Users\\hussa\\OneDrive\\Desktop\\andhra university\\final-sheet exam\\exam-server.py', reloading
+2025-10-27 05:43:26,498 - INFO -  * Restarting with stat
+2025-10-27 05:43:26,856 - WARNING -  * Debugger is active!
+2025-10-27 05:43:26,862 - INFO -  * Debugger PIN: 184-713-587
+2025-10-27 05:43:58,030 - INFO -  * Detected change in 'C:\\Users\\hussa\\OneDrive\\Desktop\\andhra university\\final-sheet exam\\exam-server.py', reloading
+2025-10-27 05:43:58,068 - INFO -  * Restarting with stat
+2025-10-27 05:43:58,453 - WARNING -  * Debugger is active!
+2025-10-27 05:43:58,458 - INFO -  * Debugger PIN: 184-713-587
+2025-10-27 05:44:10,525 - INFO -  * Detected change in 'C:\\Users\\hussa\\OneDrive\\Desktop\\andhra university\\final-sheet exam\\exam-server.py', reloading
+2025-10-27 05:44:10,558 - INFO -  * Restarting with stat
+2025-10-27 05:44:10,925 - WARNING -  * Debugger is active!
+2025-10-27 05:44:10,979 - INFO -  * Debugger PIN: 184-713-587
+2025-10-27 05:44:27,394 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.102:5000
+2025-10-27 05:44:27,394 - INFO - [33mPress CTRL+C to quit[0m
+2025-10-27 05:44:27,396 - INFO -  * Restarting with stat
+2025-10-27 05:44:27,746 - WARNING -  * Debugger is active!
+2025-10-27 05:44:27,751 - INFO -  * Debugger PIN: 184-713-587
+2025-10-27 05:44:39,003 - INFO - 127.0.0.1 - - [27/Oct/2025 05:44:39] "GET /?sheet=A&id=a22315b0-644b-4cb7-a381-42a4c0f22a59&vscodeBrowserReqId=1761524078688 HTTP/1.1" 200 -
+2025-10-27 05:44:47,661 - INFO - Answer access - Student ID: 1, Name: \u0627\u062d\u0645\u062f \u0633\u0639\u062f\u0648\u0646 \u062c\u0628\u0627\u0631 \u0644\u0641\u062a\u0629, Sheet: A, IP: 127.0.0.1
+2025-10-27 05:44:47,663 - INFO - 127.0.0.1 - - [27/Oct/2025 05:44:47] "GET /answers/A?authenticated=true&student_id=1&id=a22315b0-644b-4cb7-a381-42a4c0f22a59&vscodeBrowserReqId=1761524087654 HTTP/1.1" 200 -
+2025-10-27 05:45:39,364 - INFO - Answer access - Student ID: 25, Name: \u0633\u062c\u0627\u062f \u062e\u0645\u0627\u0633 \u062d\u064a\u062f\u0631 \u062d\u0627\u0641\u0638, Sheet: B, IP: 127.0.0.1
+2025-10-27 05:45:39,365 - INFO - 127.0.0.1 - - [27/Oct/2025 05:45:39] "GET /answers/B?authenticated=true&student_id=25&id=a22315b0-644b-4cb7-a381-42a4c0f22a59&vscodeBrowserReqId=1761524139054 HTTP/1.1" 200 -
+2025-10-27 05:46:37,327 - INFO -  * Detected change in 'C:\\Users\\hussa\\OneDrive\\Desktop\\andhra university\\final-sheet exam\\exam-server.py', reloading
+2025-10-27 05:46:37,367 - INFO -  * Restarting with stat
+2025-10-27 05:46:37,589 - INFO -  * Detected change in 'C:\\Users\\hussa\\OneDrive\\Desktop\\andhra university\\final-sheet exam\\exam-server.py', reloading
+2025-10-27 05:46:37,634 - INFO -  * Restarting with stat
+2025-10-27 05:46:37,767 - WARNING -  * Debugger is active!
+2025-10-27 05:46:37,773 - INFO -  * Debugger PIN: 184-713-587
+2025-10-27 05:46:38,017 - WARNING -  * Debugger is active!
+2025-10-27 05:46:38,021 - INFO -  * Debugger PIN: 184-713-587
+2025-10-27 05:48:43,303 - INFO - 127.0.0.1 - - [27/Oct/2025 05:48:43] "GET /?sheet=A&id=c2d07bcb-c960-4611-960b-e6e47d6ee5df&vscodeBrowserReqId=1761524322986 HTTP/1.1" 200 -
+2025-10-27 05:48:49,524 - INFO - 127.0.0.1 - - [27/Oct/2025 05:48:49] "GET /?sheet=C&id=c2d07bcb-c960-4611-960b-e6e47d6ee5df&vscodeBrowserReqId=1761524329515 HTTP/1.1" 200 -
+2025-10-27 05:48:54,304 - INFO - 127.0.0.1 - - [27/Oct/2025 05:48:54] "GET /?sheet=E&id=c2d07bcb-c960-4611-960b-e6e47d6ee5df&vscodeBrowserReqId=1761524333990 HTTP/1.1" 200 -
+2025-10-27 05:50:00,681 - INFO -  * Detected change in 'C:\\Users\\hussa\\OneDrive\\Desktop\\andhra university\\final-sheet exam\\exam-server.py', reloading
+2025-10-27 05:50:00,716 - INFO -  * Restarting with stat
+2025-10-27 05:50:00,974 - INFO -  * Detected change in 'C:\\Users\\hussa\\OneDrive\\Desktop\\andhra university\\final-sheet exam\\exam-server.py', reloading
+2025-10-27 05:50:01,023 - INFO -  * Restarting with stat
+2025-10-27 05:50:01,102 - WARNING -  * Debugger is active!
+2025-10-27 05:50:01,108 - INFO -  * Debugger PIN: 184-713-587
+2025-10-27 05:50:01,415 - WARNING -  * Debugger is active!
+2025-10-27 05:50:01,420 - INFO -  * Debugger PIN: 184-713-587
+2025-10-27 05:50:08,464 - INFO -  * Detected change in 'C:\\Users\\hussa\\OneDrive\\Desktop\\andhra university\\final-sheet exam\\exam-server.py', reloading
+2025-10-27 05:50:08,508 - INFO -  * Restarting with stat
+2025-10-27 05:50:08,876 - WARNING -  * Debugger is active!
+2025-10-27 05:50:08,880 - INFO -  * Debugger PIN: 184-713-587
+2025-10-27 05:50:09,154 - INFO -  * Detected change in 'C:\\Users\\hussa\\OneDrive\\Desktop\\andhra university\\final-sheet exam\\exam-server.py', reloading
+2025-10-27 05:50:09,192 - INFO -  * Restarting with stat
+2025-10-27 05:50:09,552 - WARNING -  * Debugger is active!
+2025-10-27 05:50:09,557 - INFO -  * Debugger PIN: 184-713-587
+2025-10-27 05:50:19,935 - INFO -  * Detected change in 'C:\\Users\\hussa\\OneDrive\\Desktop\\andhra university\\final-sheet exam\\exam-server.py', reloading
+2025-10-27 05:50:19,971 - INFO -  * Restarting with stat
+2025-10-27 05:50:20,334 - WARNING -  * Debugger is active!
+2025-10-27 05:50:20,339 - INFO -  * Debugger PIN: 184-713-587
+2025-10-27 05:50:20,628 - INFO -  * Detected change in 'C:\\Users\\hussa\\OneDrive\\Desktop\\andhra university\\final-sheet exam\\exam-server.py', reloading
+2025-10-27 05:50:20,659 - INFO -  * Restarting with stat
+2025-10-27 05:50:21,001 - WARNING -  * Debugger is active!
+2025-10-27 05:50:21,006 - INFO -  * Debugger PIN: 184-713-587
+2025-10-27 05:50:22,811 - INFO - 127.0.0.1 - - [27/Oct/2025 05:50:22] "GET /?sheet=A HTTP/1.1" 200 -
+2025-10-27 05:50:22,954 - INFO - 127.0.0.1 - - [27/Oct/2025 05:50:22] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-10-27 05:50:26,095 - INFO - Access granted - Student ID: 10, Name: \u062d\u0633\u064a\u0646 \u0628\u0627\u062f\u064a \u0639\u062c\u0631\u0634 \u062c\u0648\u064a\u062f, Sheet: A, IP: 127.0.0.1
+2025-10-27 05:50:26,095 - INFO - Access granted - Student ID: 10, Name: \u062d\u0633\u064a\u0646 \u0628\u0627\u062f\u064a \u0639\u062c\u0631\u0634 \u062c\u0648\u064a\u062f, Sheet: A, IP: 127.0.0.1
+2025-10-27 05:50:26,096 - INFO - 127.0.0.1 - - [27/Oct/2025 05:50:26] "POST /auth HTTP/1.1" 200 -
+2025-10-27 05:57:11,255 - INFO -  * Detected change in 'C:\\Users\\hussa\\OneDrive\\Desktop\\andhra university\\final-sheet exam\\exam-server.py', reloading
+2025-10-27 05:57:11,293 - INFO -  * Restarting with stat
+2025-10-27 05:57:11,660 - WARNING -  * Debugger is active!
+2025-10-27 05:57:11,666 - INFO -  * Debugger PIN: 184-713-587

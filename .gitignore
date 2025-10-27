@@ -1,0 +1,30 @@
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+
+# Ignore most PDFs but keep the finals
+*.pdf
+!Answer_Key.pdf
+!Exam_Sheets_AUTH_PAGES.pdf
+
+# Editors/OS
+.DS_Store
+Thumbs.db
+.ipynb_checkpoints/
+
+# Python/venv
+.venv/
+__pycache__/
+
+# Local logs and env
+exam_access.log
+*.env
+tokens.env
+
+# Node/JS (if any)
+node_modules/
