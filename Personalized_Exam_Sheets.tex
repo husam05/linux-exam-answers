@@ -1,0 +1,621 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[a4paper, margin=2cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{qrcode}
+\usepackage{hyperref}
+
+\definecolor{primaryblue}{RGB}{0,51,102}
+\definecolor{lightgray}{RGB}{240,240,240}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textbf{AlMustafa University}}
+\fancyhead[R]{\small Cybersecurity Engineering Department}
+\fancyfoot[C]{\thepage}
+
+% Command to create exam header with student ID
+\newcommand{\examheader}[5]{
+    \begin{center}
+        {\Large\textbf{#1}}\\[2mm]
+        {\large Linux Administration - Final Exam}\\[2mm]
+        {\large Sheet #2}\\[5mm]
+    \end{center}
+    
+    \noindent
+    \begin{tabular}{ll}
+        \textbf{Duration:} & #3 \\
+        \textbf{Student ID:} & \textcolor{primaryblue}{\Large\textbf{#5}} \\
+    \end{tabular}
+    
+    \vspace{3mm}
+    \noindent
+    \colorbox{lightgray}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{%
+        \small\textbf{Instructions:} Answer all questions clearly. Execute commands in your Linux terminal. Write legibly. \textbf{Total: 20 points}
+    }}
+    
+    % QR Code for Answer Access - Enhanced Size for Camera Scanning
+    \vspace{3mm}
+    \noindent
+    \begin{tcolorbox}[
+        colback=white,
+        colframe=primaryblue,
+        boxrule=1.5pt,
+        arc=3pt,
+        left=8pt,
+        right=8pt,
+        top=6pt,
+        bottom=6pt,
+        width=\textwidth
+    ]
+    \begin{minipage}{0.65\textwidth}
+        \textcolor{primaryblue}{\textbf{Answer Key Access:}} \\
+        \small Scan QR code with mobile camera for secure answer verification \\
+        \footnotesize \textit{Private GitHub repository access}
+    \end{minipage}%
+    \begin{minipage}{0.35\textwidth}
+        \centering
+                                        \qrcode[height=3.2cm, padding]{#4}
+    \end{minipage}
+    \end{tcolorbox}
+    
+    \vspace{5mm}
+}
+
+\begin{document}
+
+% Sheet A Questions
+\newcommand{\sheetAquestions}{
+\section*{Part 1: Multiple Choice Questions (10 points)}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item Which command is used to display the current working directory? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item \texttt{cd}
+        \item \texttt{pwd}
+        \item \texttt{ls}
+        \item \texttt{dir}
+    \end{enumerate}
+    
+    \item What does the command \texttt{chmod 755 file.txt} do? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item Sets read, write, execute for owner; read and execute for group and others
+        \item Sets read and write for everyone
+        \item Deletes the file
+        \item Changes the file owner
+    \end{enumerate}
+    
+    \item Which command shows running processes? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item \texttt{ls}
+        \item \texttt{ps}
+        \item \texttt{cd}
+        \item \texttt{mkdir}
+    \end{enumerate}
+    
+    \item What is the purpose of the \texttt{grep} command? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item Create directories
+        \item Search for patterns in files
+        \item Remove files
+        \item Change file permissions
+    \end{enumerate}
+    
+    \item Which command displays the contents of a file? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item \texttt{rm}
+        \item \texttt{cat}
+        \item \texttt{mkdir}
+        \item \texttt{chmod}
+    \end{enumerate}
+\end{enumerate}
+
+\section*{Part 2: Practical Questions (10 points)}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, resume]
+    \item Write the command to create a directory named ``my\_project'' in your home directory. (2 points)
+    
+    \vspace{2cm}
+    
+    \item Write the command to search for the word ``error'' in a file named ``log.txt''. (2 points)
+    
+    \vspace{2cm}
+    
+    \item Explain what the command \texttt{tar -xzvf archive.tar.gz} does. (3 points)
+    
+    \vspace{3cm}
+    
+    \item Write the command to find all files with the extension ``.txt'' in the current directory. (3 points)
+    
+    \vspace{3cm}
+\end{enumerate}
+}
+
+% Sheet B Questions
+\newcommand{\sheetBquestions}{
+\section*{Part 1: Multiple Choice Questions (10 points)}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item Which command is used to remove a directory? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item \texttt{mkdir}
+        \item \texttt{rmdir}
+        \item \texttt{cd}
+        \item \texttt{ls}
+    \end{enumerate}
+    
+    \item What does \texttt{sudo} stand for? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item Super User Do
+        \item System User Directory
+        \item Secure Domain
+        \item none of the above
+    \end{enumerate}
+    
+    \item Which command displays disk usage? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item \texttt{ps}
+        \item \texttt{df}
+        \item \texttt{ls}
+        \item \texttt{cat}
+    \end{enumerate}
+    
+    \item What is the purpose of \texttt{man} command? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item Manual pages
+        \item Create files
+        \item Remove directories
+        \item Change permissions
+    \end{enumerate}
+    
+    \item Which symbol redirects output to a file? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item \texttt{<}
+        \item \texttt{>}
+        \item \texttt{|}
+        \item \texttt{\&}
+    \end{enumerate}
+\end{enumerate}
+
+\section*{Part 2: Practical Questions (10 points)}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, resume]
+    \item Write the command to copy a file named ``data.txt'' to ``backup.txt''. (2 points)
+    
+    \vspace{2cm}
+    
+    \item Write the command to display the last 10 lines of a file named ``system.log''. (2 points)
+    
+    \vspace{2cm}
+    
+    \item Explain what the pipe (\texttt{|}) operator does in Linux. (3 points)
+    
+    \vspace{3cm}
+    
+    \item Write the command to kill a process with PID 1234. (3 points)
+    
+    \vspace{3cm}
+\end{enumerate}
+}
+
+% Sheet C Questions
+\newcommand{\sheetCquestions}{
+\section*{Part 1: Multiple Choice Questions (10 points)}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item Which command shows the last few lines of a file? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item \texttt{head}
+        \item \texttt{tail}
+        \item \texttt{cat}
+        \item \texttt{more}
+    \end{enumerate}
+    
+    \item What does \texttt{ls -la} display? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item Long format with hidden files
+        \item Only directories
+        \item File contents
+        \item Running processes
+    \end{enumerate}
+    
+    \item Which command compresses files in Linux? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item \texttt{zip}
+        \item \texttt{unzip}
+        \item \texttt{gzip}
+        \item Both a and c
+    \end{enumerate}
+    
+    \item What is the root directory in Linux? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item \texttt{/home}
+        \item \texttt{/}
+        \item \texttt{/root}
+        \item \texttt{C:}
+    \end{enumerate}
+    
+    \item Which command changes file ownership? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item \texttt{chmod}
+        \item \texttt{chown}
+        \item \texttt{chgrp}
+        \item \texttt{ls}
+    \end{enumerate}
+\end{enumerate}
+
+\section*{Part 2: Practical Questions (10 points)}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, resume]
+    \item Write the command to move a file from \texttt{/home/user/file.txt} to \texttt{/tmp/}. (2 points)
+    
+    \vspace{2cm}
+    
+    \item Write the command to count the number of lines in ``document.txt''. (2 points)
+    
+    \vspace{2cm}
+    
+    \item Explain the difference between \texttt{>} and \texttt{>>} redirection operators. (3 points)
+    
+    \vspace{3cm}
+    
+    \item Write the command to find files modified in the last 7 days. (3 points)
+    
+    \vspace{3cm}
+\end{enumerate}
+}
+
+% Sheet D Questions
+\newcommand{\sheetDquestions}{
+\section*{Part 1: Multiple Choice Questions (10 points)}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item Which command shows network connections? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item \texttt{netstat}
+        \item \texttt{ls}
+        \item \texttt{ps}
+        \item \texttt{df}
+    \end{enumerate}
+    
+    \item What does \texttt{wget} do? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item Downloads files from the internet
+        \item Compresses files
+        \item Shows network status
+        \item Creates directories
+    \end{enumerate}
+    
+    \item Which command displays system information? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item \texttt{uname -a}
+        \item \texttt{ls}
+        \item \texttt{cat}
+        \item \texttt{pwd}
+    \end{enumerate}
+    
+    \item What is the purpose of \texttt{ssh}? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item Secure Shell - remote login
+        \item System shutdown
+        \item Show files
+        \item Search files
+    \end{enumerate}
+    
+    \item Which command monitors system resources in real-time? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item \texttt{ps}
+        \item \texttt{top}
+        \item \texttt{ls}
+        \item \texttt{cat}
+    \end{enumerate}
+\end{enumerate}
+
+\section*{Part 2: Practical Questions (10 points)}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, resume]
+    \item Write the command to check free memory on the system. (2 points)
+    
+    \vspace{2cm}
+    
+    \item Write the command to archive a directory ``myproject'' into ``myproject.tar''. (2 points)
+    
+    \vspace{2cm}
+    
+    \item Explain what environment variables are and give two examples. (3 points)
+    
+    \vspace{3cm}
+    
+    \item Write the command to display all users currently logged in. (3 points)
+    
+    \vspace{3cm}
+\end{enumerate}
+}
+
+% Sheet E Questions
+\newcommand{\sheetEquestions}{
+\section*{Part 1: Multiple Choice Questions (10 points)}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item Which file contains user account information? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item \texttt{/etc/passwd}
+        \item \texttt{/etc/shadow}
+        \item \texttt{/home/user}
+        \item \texttt{/var/log}
+    \end{enumerate}
+    
+    \item What does \texttt{apt-get} do in Debian/Ubuntu? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item Package management
+        \item File compression
+        \item User management
+        \item Network configuration
+    \end{enumerate}
+    
+    \item Which command edits cron jobs? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item \texttt{crontab -e}
+        \item \texttt{vi cron}
+        \item \texttt{edit cron}
+        \item \texttt{nano /etc/cron}
+    \end{enumerate}
+    
+    \item What is the default shell in most Linux distributions? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item \texttt{sh}
+        \item \texttt{bash}
+        \item \texttt{zsh}
+        \item \texttt{fish}
+    \end{enumerate}
+    
+    \item Which command shows mounted filesystems? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item \texttt{mount}
+        \item \texttt{df}
+        \item \texttt{ls}
+        \item Both a and b
+    \end{enumerate}
+\end{enumerate}
+
+\section*{Part 2: Practical Questions (10 points)}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, resume]
+    \item Write the command to add a new user named ``john''. (2 points)
+    
+    \vspace{2cm}
+    
+    \item Write the command to view system logs in \texttt{/var/log/syslog}. (2 points)
+    
+    \vspace{2cm}
+    
+    \item Explain what a symbolic link is and how to create one. (3 points)
+    
+    \vspace{3cm}
+    
+    \item Write the command to check which ports are listening on the system. (3 points)
+    
+    \vspace{3cm}
+\end{enumerate}
+}
+
+% Sheet F Questions
+\newcommand{\sheetFquestions}{
+\section*{Part 1: Multiple Choice Questions (10 points)}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item Which command compares two files? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item \texttt{diff}
+        \item \texttt{cmp}
+        \item \texttt{compare}
+        \item Both a and b
+    \end{enumerate}
+    
+    \item What does \texttt{systemctl} do? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item System and service manager
+        \item File manager
+        \item User manager
+        \item Network manager
+    \end{enumerate}
+    
+    \item Which command shows disk partitions? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item \texttt{fdisk -l}
+        \item \texttt{ls}
+        \item \texttt{cat}
+        \item \texttt{ps}
+    \end{enumerate}
+    
+    \item What is \texttt{awk} used for? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item Text processing
+        \item File deletion
+        \item Directory creation
+        \item Process management
+    \end{enumerate}
+    
+    \item Which command shows command history? (2 points)
+    \begin{enumerate}[label=(\alph*)]
+        \item \texttt{history}
+        \item \texttt{log}
+        \item \texttt{record}
+        \item \texttt{trace}
+    \end{enumerate}
+\end{enumerate}
+
+\section*{Part 2: Practical Questions (10 points)}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, resume]
+    \item Write the command to sort the contents of ``names.txt'' alphabetically. (2 points)
+    
+    \vspace{2cm}
+    
+    \item Write the command to find your IP address. (2 points)
+    
+    \vspace{2cm}
+    
+    \item Explain what a package manager is and name two examples. (3 points)
+    
+    \vspace{3cm}
+    
+    \item Write the command to schedule a task to run every day at 2 AM using cron. (3 points)
+    
+    \vspace{3cm}
+\end{enumerate}
+}
+
+% Student assignments - cycling through sheets A-F
+% Student ID 10643 - Sheet A
+\examheader{AlMustafa University}{A}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=A}{10643}
+\sheetAquestions
+\newpage
+
+% Student ID 10649 - Sheet B
+\examheader{AlMustafa University}{B}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=B}{10649}
+\sheetBquestions
+\newpage
+
+% Student ID 10639 - Sheet C
+\examheader{AlMustafa University}{C}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=C}{10639}
+\sheetCquestions
+\newpage
+
+% Student ID 10607 - Sheet D
+\examheader{AlMustafa University}{D}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=D}{10607}
+\sheetDquestions
+\newpage
+
+% Student ID 10628 - Sheet E
+\examheader{AlMustafa University}{E}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=E}{10628}
+\sheetEquestions
+\newpage
+
+% Student ID 10614 - Sheet F
+\examheader{AlMustafa University}{F}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=F}{10614}
+\sheetFquestions
+\newpage
+
+% Student ID 10634 - Sheet A (cycle back)
+\examheader{AlMustafa University}{A}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=A}{10634}
+\sheetAquestions
+\newpage
+
+% Student ID 10618 - Sheet B
+\examheader{AlMustafa University}{B}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=B}{10618}
+\sheetBquestions
+\newpage
+
+% Student ID 10641 - Sheet C
+\examheader{AlMustafa University}{C}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=C}{10641}
+\sheetCquestions
+\newpage
+
+% Student ID 10617 - Sheet D
+\examheader{AlMustafa University}{D}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=D}{10617}
+\sheetDquestions
+\newpage
+
+% Student ID 10580 - Sheet E
+\examheader{AlMustafa University}{E}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=E}{10580}
+\sheetEquestions
+\newpage
+
+% Student ID 10648 - Sheet F
+\examheader{AlMustafa University}{F}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=F}{10648}
+\sheetFquestions
+\newpage
+
+% Student ID 10610 - Sheet A
+\examheader{AlMustafa University}{A}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=A}{10610}
+\sheetAquestions
+\newpage
+
+% Student ID 10611 - Sheet B
+\examheader{AlMustafa University}{B}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=B}{10611}
+\sheetBquestions
+\newpage
+
+% Student ID 10603 - Sheet C
+\examheader{AlMustafa University}{C}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=C}{10603}
+\sheetCquestions
+\newpage
+
+% Student ID 10584 - Sheet D
+\examheader{AlMustafa University}{D}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=D}{10584}
+\sheetDquestions
+\newpage
+
+% Student ID 10582 - Sheet E
+\examheader{AlMustafa University}{E}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=E}{10582}
+\sheetEquestions
+\newpage
+
+% Student ID 10601 - Sheet F
+\examheader{AlMustafa University}{F}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=F}{10601}
+\sheetFquestions
+\newpage
+
+% Student ID 10633 - Sheet A
+\examheader{AlMustafa University}{A}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=A}{10633}
+\sheetAquestions
+\newpage
+
+% Student ID 10579 - Sheet B
+\examheader{AlMustafa University}{B}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=B}{10579}
+\sheetBquestions
+\newpage
+
+% Student ID 10642 - Sheet C
+\examheader{AlMustafa University}{C}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=C}{10642}
+\sheetCquestions
+\newpage
+
+% Student ID 10588 - Sheet D
+\examheader{AlMustafa University}{D}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=D}{10588}
+\sheetDquestions
+\newpage
+
+% Student ID 10590 - Sheet E
+\examheader{AlMustafa University}{E}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=E}{10590}
+\sheetEquestions
+\newpage
+
+% Student ID 10631 - Sheet F
+\examheader{AlMustafa University}{F}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=F}{10631}
+\sheetFquestions
+\newpage
+
+% Student ID 10597 - Sheet A
+\examheader{AlMustafa University}{A}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=A}{10597}
+\sheetAquestions
+\newpage
+
+% Student ID 10591 - Sheet B
+\examheader{AlMustafa University}{B}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=B}{10591}
+\sheetBquestions
+\newpage
+
+% Student ID 10605 - Sheet C
+\examheader{AlMustafa University}{C}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=C}{10605}
+\sheetCquestions
+\newpage
+
+% Student ID 10606 - Sheet D
+\examheader{AlMustafa University}{D}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=D}{10606}
+\sheetDquestions
+\newpage
+
+% Student ID 10655 - Sheet E
+\examheader{AlMustafa University}{E}{90 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=E}{10655}
+\sheetEquestions
+
+\end{document}
