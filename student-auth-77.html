@@ -220,6 +220,61 @@
             10649: { name: "مصطفى ماهر عبد العباس علي", sheet: "D" },
             10655: { name: "وسن عبد الستار عبد الرسول فرحان", sheet: "E" }
         };
+
+        document.getElementById('authForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const studentId = parseInt(document.getElementById('studentId').value);
+            
+            // Clear previous messages
+            document.getElementById('studentInfo').style.display = 'none';
+            document.getElementById('errorMsg').style.display = 'none';
+            document.getElementById('successMsg').style.display = 'none';
+            
+            // Validate student ID
+            if (!studentId || studentId < 10579 || studentId > 10655) {
+                showError('رقم الطالب غير صحيح. يجب أن يكون ضمن القائمة المسجلة.');
+                return;
+            }
+            
+            // Check if student exists
+            if (!STUDENTS[studentId]) {
+                showError('رقم الطالب غير موجود في النظام.');
+                return;
+            }
+            
+            // Get student info and assigned sheet
+            const studentData = STUDENTS[studentId];
+            const studentName = studentData.name;
+            const examSheet = studentData.sheet;
+            
+            // Show student info briefly
+            document.getElementById('studentName').textContent = studentName;
+            document.getElementById('displayId').textContent = studentId;
+            document.getElementById('displaySheet').textContent = 'ورقة ' + examSheet;
+            document.getElementById('studentInfo').style.display = 'block';
+            
+            // Gate access for answers pages using localStorage (shared across same origin)
+            try { localStorage.setItem('examAccess', 'ok'); } catch(e) {}
+
+            // Auto-redirect to the student's assigned answer sheet after 1 second
+            const viewerUrl = `answers-${examSheet}.html`;
+            
+            const successMsg = document.getElementById('successMsg');
+            successMsg.innerHTML = `
+                <p><strong>✅ تم التحقق من هويتك بنجاح!</strong></p>
+                <p>جاري تحويلك لورقة الامتحان ${examSheet}...</p>
+            `;
+            successMsg.style.display = 'block';
+            
+            // Log access
+            console.log(`Student access: ID=${studentId}, Name=${studentName}, Sheet=${examSheet}, Time=${new Date()}`);
+            
+            // Redirect after 1 second
+            setTimeout(function() {
+                window.location.href = viewerUrl;
+            }, 1000);
+        });
         
         function showError(message) {
             const errorMsg = document.getElementById('errorMsg');
