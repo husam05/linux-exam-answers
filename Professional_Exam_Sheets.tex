@@ -66,18 +66,24 @@
         bottom=6pt,
         width=\textwidth
     ]
-    \begin{minipage}{0.65\textwidth}
+    \begin{minipage}{0.60\textwidth}
         \textcolor{primaryblue}{\textbf{Answer Key Access:}} \\
         \small Scan QR code with mobile camera for secure answer verification \\
         \footnotesize \textit{Private GitHub repository access}
+        
+        \vspace{4mm}
+        \textcolor{primaryblue}{\textbf{Student Name:}} \\
+        \underline{\hspace{10cm}}
+        
+        \vspace{2mm}
+        \textcolor{primaryblue}{\textbf{Student ID:}} \\
+        \underline{\hspace{10cm}}
     \end{minipage}%
-    \begin{minipage}{0.35\textwidth}
-    \centering
-                    \qrcode[height=3.2cm, padding]{#4}
+    \begin{minipage}{0.40\textwidth}
+        \centering
+                                        \qrcode[height=3.2cm, padding]{#4}
     \end{minipage}
-    \end{tcolorbox}
-    
-    \vspace{2mm}
+    \end{tcolorbox}    \vspace{2mm}
 }
 
 % Professional Cutting Line
