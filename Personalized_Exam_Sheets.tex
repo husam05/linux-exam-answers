@@ -1,11 +1,14 @@
 \documentclass[a4paper,11pt]{article}
+\usepackage{fontspec}
+\setmainfont{Arial}
+\newfontfamily\arabicfont[Script=Arabic]{Arial}
+\usepackage{bidi}
 \usepackage[margin=0.6in,top=0.7in,bottom=0.6in]{geometry}
 \usepackage{fancyhdr}
 \usepackage{amsmath}
 \usepackage{xcolor}
 \usepackage{tikz}
 \usepackage{enumitem}
-\usepackage[utf8]{inputenc}
 \usepackage{tcolorbox}
 \usepackage{booktabs}
 \usepackage{amssymb}
@@ -44,7 +47,7 @@
     \vspace{2mm}
     
     \noindent
-    \textbf{Student Name:} \textbf{#6} \hfill \textbf{Student ID:} \textbf{#5}
+    \textbf{Student Name:} \RL{\arabicfont #6} \hfill \textbf{Student ID:} \textbf{#5}
     
     \vspace{2.5mm}
     \noindent
