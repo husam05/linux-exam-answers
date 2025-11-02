@@ -1,0 +1,663 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{fontspec}
+\setmainfont{Arial}
+\newfontfamily\arabicfont[Script=Arabic]{Arial}
+\usepackage{bidi}
+\usepackage[margin=0.6in,top=0.7in,bottom=0.6in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{qrcode}
+\usepackage{hyperref}
+
+% Professional Academic Color Scheme
+\definecolor{primaryblue}{RGB}{0,51,102}
+\definecolor{accentblue}{RGB}{0,102,204}
+\definecolor{codebg}{RGB}{248,249,250}
+\definecolor{bordercolor}{RGB}{180,180,180}
+\definecolor{lightgray}{RGB}{240,240,240}
+
+% Professional Exam Header with QR Code, Student ID, and Student Name
+\newcommand{\examheader}[6]{%
+    \noindent
+    \begin{tikzpicture}
+        \fill[primaryblue] (0,0) rectangle (\textwidth, 1.2cm);
+    \node[white] at (0.5\textwidth, 0.8cm) {\Large \textbf{AlMustafa University}};
+    \node[white] at (0.5\textwidth, 0.35cm) {\small Cybersecurity Engineering Department};
+    \end{tikzpicture}
+    
+    \vspace{3mm}
+    \noindent
+    {\large\textbf{Linux Lab - Mid-Term Exam}}
+    
+    \vspace{2mm}
+    \noindent
+    \textbf{Instructor:} Dr. Husam Alkinani \hfill \textbf{Exam Sheet:} #2
+    
+    \noindent
+    \textbf{Date:} November 2, 2025 \hfill \textbf{Duration:} #3
+    
+    \vspace{2mm}
+    \noindent\rule{\textwidth}{0.8pt}
+    \vspace{2mm}
+    
+    \noindent
+    \textbf{Student Name:} \RL{\arabicfont \textbf{#6}} \hfill \textbf{Student ID:} \textbf{#5}
+    
+    \vspace{2.5mm}
+    \noindent
+    \colorbox{lightgray}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{%
+        \small\textbf{Instructions:} Answer all questions clearly. Execute commands in your Linux terminal. Write legibly. \textbf{Total: 20 points}
+    }}
+    
+    % QR Code for Answer Access - Enhanced Size for Camera Scanning
+    \vspace{3mm}
+    \noindent
+    \begin{tcolorbox}[
+        colback=white,
+        colframe=primaryblue,
+        boxrule=1.5pt,
+        arc=3pt,
+        left=8pt,
+        right=8pt,
+        top=6pt,
+        bottom=6pt,
+        width=\textwidth
+    ]
+    \begin{minipage}{0.65\textwidth}
+        \textcolor{primaryblue}{\textbf{Answer Key Access:}} \\
+        \small Scan QR code with mobile camera for secure answer verification
+    \end{minipage}%
+    \begin{minipage}{0.35\textwidth}
+        \centering
+        \qrcode[height=3.2cm, padding]{#4}
+    \end{minipage}
+    \end{tcolorbox}
+    \vspace{2mm}
+}
+
+% Professional Cutting Line
+\newcommand{\cuttingline}{%
+    \vspace{4mm}
+    \noindent
+    \begin{tikzpicture}
+        \draw[dashed, line width=1pt, gray] (0,0) -- (\textwidth,0);
+    \end{tikzpicture}
+    \vspace{4mm}
+}
+
+% Professional Code Box
+\newcommand{\codebox}[1]{%
+    \vspace{1mm}
+    \noindent
+    \begin{tcolorbox}[
+        colback=codebg,
+        colframe=accentblue,
+        boxrule=1pt,
+        arc=2pt,
+        left=4pt,
+        right=4pt,
+        top=3pt,
+        bottom=3pt,
+        width=\textwidth
+    ]
+    \centering\ttfamily\large\textbf{#1}
+    \end{tcolorbox}
+    \vspace{1mm}
+}
+
+% Professional Answer Box
+\newcommand{\answerbox}[1]{%
+    \vspace{1mm}
+    \noindent
+    \begin{tcolorbox}[
+        colback=white,
+        colframe=bordercolor,
+        boxrule=0.8pt,
+        arc=1pt,
+        height=#1,
+        left=6pt,
+        right=6pt,
+        top=4pt,
+        bottom=4pt,
+        width=\textwidth
+    ]
+    \textcolor{gray}{\footnotesize \textit{Write your answer here:}}
+    \end{tcolorbox}
+}
+
+% Sheet A Content
+\newcommand{\sheetAcontent}{%
+\textbf{\large\textcolor{primaryblue}{Question 1: Practical Command Execution}} \hfill \textit{(10 points)}
+
+\vspace{1mm}
+Execute the following command in your Linux terminal and document the complete output:
+
+\codebox{ls -l /etc/passwd}
+
+\textbf{Command Output:}
+\answerbox{26mm}
+
+\textbf{Explanation:} Describe what information this command displays (2-3 lines):
+
+\underline{\hspace{\textwidth}}
+
+\underline{\hspace{\textwidth}}
+
+\vspace{2mm}
+\noindent\rule{\textwidth}{0.4pt}
+\vspace{2mm}
+
+\textbf{\large\textcolor{primaryblue}{Question 2: Theoretical Knowledge}} \hfill \textit{(10 points)}
+
+\vspace{1mm}
+\textbf{Multiple Choice Question:}
+
+In Linux file permissions, what does the notation "rwx" represent?
+
+\begin{enumerate}[label=\textbf{\alph*)}, leftmargin=*, itemsep=2pt, topsep=2pt]
+    \item read, write, execute
+    \item root, web, extra
+    \item run, wait, exit
+    \item red, white, expert
+\end{enumerate}
+
+\textbf{Your Answer:} \underline{\hspace{2.5cm}}
+
+\textbf{Justification (1 line):} \underline{\hspace{9.5cm}}
+}
+
+% Sheet B Content
+\newcommand{\sheetBcontent}{%
+\textbf{\large\textcolor{primaryblue}{Question 1: Practical Command Execution}} \hfill \textit{(10 points)}
+
+\vspace{1mm}
+Execute the following command in your Linux terminal and document the complete output:
+
+\codebox{whoami}
+
+\textbf{Command Output:}
+\answerbox{26mm}
+
+\textbf{Explanation:} Describe the function and purpose of this command (2-3 lines):
+
+\underline{\hspace{\textwidth}}
+
+\underline{\hspace{\textwidth}}
+
+\vspace{2mm}
+\noindent\rule{\textwidth}{0.4pt}
+\vspace{2mm}
+
+\textbf{\large\textcolor{primaryblue}{Question 2: Theoretical Knowledge}} \hfill \textit{(10 points)}
+
+\vspace{1mm}
+\textbf{Multiple Choice Question:}
+
+Which Linux distribution is specifically designed for cybersecurity professionals and penetration testing?
+
+\begin{enumerate}[label=\textbf{\alph*)}, leftmargin=*, itemsep=2pt, topsep=2pt]
+    \item Windows Operating System
+    \item Kali Linux
+    \item Microsoft Office Suite
+    \item Google Chrome Browser
+\end{enumerate}
+
+\textbf{Your Answer:} \underline{\hspace{2.5cm}}
+
+\textbf{Justification (1 line):} \underline{\hspace{9.5cm}}
+}
+
+% Sheet C Content
+\newcommand{\sheetCcontent}{%
+\textbf{\large\textcolor{primaryblue}{Question 1: Practical Command Execution}} \hfill \textit{(10 points)}
+
+\vspace{1mm}
+Execute the following command in your Linux terminal and document the complete output:
+
+\codebox{pwd}
+
+\textbf{Command Output:}
+\answerbox{26mm}
+
+\textbf{Explanation:} Describe what information this command provides (2-3 lines):
+
+\underline{\hspace{\textwidth}}
+
+\underline{\hspace{\textwidth}}
+
+\vspace{2mm}
+\noindent\rule{\textwidth}{0.4pt}
+\vspace{2mm}
+
+\textbf{\large\textcolor{primaryblue}{Question 2: Theoretical Knowledge}} \hfill \textit{(10 points)}
+
+\vspace{1mm}
+\textbf{Multiple Choice Question:}
+
+What does the Linux command 'sudo' stand for?
+
+\begin{enumerate}[label=\textbf{\alph*)}, leftmargin=*, itemsep=2pt, topsep=2pt]
+    \item Super user do
+    \item System update download only
+    \item Secure user data online
+    \item Start up disk operations
+\end{enumerate}
+
+\textbf{Your Answer:} \underline{\hspace{2.5cm}}
+
+\textbf{Justification (1 line):} \underline{\hspace{9.5cm}}
+}
+
+% Sheet D Content
+\newcommand{\sheetDcontent}{%
+\textbf{\large\textcolor{primaryblue}{Question 1: Practical Command Execution}} \hfill \textit{(10 points)}
+
+\vspace{1mm}
+Execute the following command in your Linux terminal and document the complete output:
+
+\codebox{df -h}
+
+\textbf{Command Output:}
+\answerbox{24mm}
+
+\textbf{Explanation:} Describe what information this command displays (2-3 lines):
+
+\underline{\hspace{\textwidth}}
+
+\underline{\hspace{\textwidth}}
+
+\vspace{2mm}
+\noindent\rule{\textwidth}{0.4pt}
+\vspace{2mm}
+
+\textbf{\large\textcolor{primaryblue}{Question 2: Theoretical Knowledge}} \hfill \textit{(10 points)}
+
+\vspace{1mm}
+\textbf{Multiple Choice Question:}
+
+What does the 'df -h' command display in Linux?
+
+\begin{enumerate}[label=\textbf{\alph*)}, leftmargin=*, itemsep=2pt, topsep=2pt]
+    \item Directory file listing
+    \item Disk space usage in human-readable format
+    \item Date and file information
+    \item Default filesystem type
+\end{enumerate}
+
+\textbf{Your Answer:} \underline{\hspace{2.5cm}}
+
+\textbf{Justification (1 line):} \underline{\hspace{9.5cm}}
+}
+
+% Sheet E Content
+\newcommand{\sheetEcontent}{%
+\textbf{\large\textcolor{primaryblue}{Question 1: Practical Command Execution}} \hfill \textit{(10 points)}
+
+\vspace{1mm}
+Execute the following command in your Linux terminal and document the output:
+
+\codebox{uname -a}
+
+\textbf{Command Output:}
+\answerbox{23mm}
+
+\textbf{Explanation:} Describe what system information this command provides (2-3 lines):
+
+\underline{\hspace{\textwidth}}
+
+\underline{\hspace{\textwidth}}
+
+\vspace{2mm}
+\noindent\rule{\textwidth}{0.4pt}
+\vspace{2mm}
+
+\textbf{\large\textcolor{primaryblue}{Question 2: Theoretical Knowledge}} \hfill \textit{(10 points)}
+
+\vspace{1mm}
+\textbf{Multiple Choice Question:}
+
+What type of information does the 'uname -a' command display?
+
+\begin{enumerate}[label=\textbf{\alph*)}, leftmargin=*, itemsep=2pt, topsep=2pt]
+    \item User account names and passwords
+    \item Complete system information including kernel version
+    \item Network configuration details
+    \item Disk usage and filesystem information
+\end{enumerate}
+
+\textbf{Your Answer:} \underline{\hspace{2.5cm}}
+
+\textbf{Justification (1 line):} \underline{\hspace{9.5cm}}
+}
+
+% Sheet F Content
+\newcommand{\sheetFcontent}{%
+\textbf{\large\textcolor{primaryblue}{Question 1: Practical Command Execution}} \hfill \textit{(10 points)}
+
+\vspace{1mm}
+Execute the following command in your Linux terminal and document the output:
+
+\codebox{top}
+
+\textbf{Command Output:}
+\answerbox{23mm}
+
+\textbf{Explanation:} Describe what information the 'top' command displays (2-3 lines):
+
+\underline{\hspace{\textwidth}}
+
+\underline{\hspace{\textwidth}}
+
+\vspace{2mm}
+\noindent\rule{\textwidth}{0.4pt}
+\vspace{2mm}
+
+\textbf{\large\textcolor{primaryblue}{Question 2: Theoretical Knowledge}} \hfill \textit{(10 points)}
+
+\vspace{1mm}
+\textbf{Multiple Choice Question:}
+
+What is the primary purpose of the 'top' command in Linux system administration?
+
+\begin{enumerate}[label=\textbf{\alph*)}, leftmargin=*, itemsep=2pt, topsep=2pt]
+    \item Display static file system information
+    \item Monitor real-time system processes and resource usage
+    \item Configure network interfaces
+    \item Manage user accounts and permissions
+\end{enumerate}
+
+\textbf{Your Answer:} \underline{\hspace{2.5cm}}
+
+\textbf{Justification (1 line):} \underline{\hspace{9.5cm}}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\small \textcolor{gray}{Linux Cybersecurity Lab Exam}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+
+\begin{document}
+
+% LX003 - احمد ناطق جميل صادق - Sheet A
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{A}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=A}{LX003}{احمد ناطق جميل صادق}
+\sheetAcontent
+\end{minipage}
+\cuttingline
+
+% LX005 - الزهراء حسنين محمد عبد الرضا - Sheet B
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{B}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=B}{LX005}{الزهراء حسنين محمد عبد الرضا}
+\sheetBcontent
+\end{minipage}
+\newpage
+
+% LX007 - تبارك صاحب فهد خليفه - Sheet C
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{C}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=C}{LX007}{تبارك صاحب فهد خليفه}
+\sheetCcontent
+\end{minipage}
+\cuttingline
+
+% LX008 - حسن سعد فرحان علي - Sheet D
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{D}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=D}{LX008}{حسن سعد فرحان علي}
+\sheetDcontent
+\end{minipage}
+\newpage
+
+% LX010 - حسين بادي عجرش جويد - Sheet E
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{E}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=E}{LX010}{حسين بادي عجرش جويد}
+\sheetEcontent
+\end{minipage}
+\cuttingline
+
+% LX013 - حمزه حيدر حمزة صادق - Sheet F
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{F}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=F}{LX013}{حمزه حيدر حمزة صادق}
+\sheetFcontent
+\end{minipage}
+\newpage
+
+% LX014 - حيدر عباس فاضل عباس - Sheet A
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{A}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=A}{LX014}{حيدر عباس فاضل عباس}
+\sheetAcontent
+\end{minipage}
+\cuttingline
+
+% LX015 - حيدر عدي داخل رشم - Sheet B
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{B}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=B}{LX015}{حيدر عدي داخل رشم}
+\sheetBcontent
+\end{minipage}
+\newpage
+
+% LX016 - حيدر علي حسن مهنا - Sheet C
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{C}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=C}{LX016}{حيدر علي حسن مهنا}
+\sheetCcontent
+\end{minipage}
+\cuttingline
+
+% LX017 - ختام رزاق حاتم زوير - Sheet D
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{D}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=D}{LX017}{ختام رزاق حاتم زوير}
+\sheetDcontent
+\end{minipage}
+\newpage
+
+% LX019 - رقية عادل عباس شايع - Sheet E
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{E}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=E}{LX019}{رقية عادل عباس شايع}
+\sheetEcontent
+\end{minipage}
+\cuttingline
+
+% LX021 - ريام علي حسين علي - Sheet F
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{F}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=F}{LX021}{ريام علي حسين علي}
+\sheetFcontent
+\end{minipage}
+\newpage
+
+% LX023 - زهراء انور سلمان سعيد - Sheet A
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{A}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=A}{LX023}{زهراء انور سلمان سعيد}
+\sheetAcontent
+\end{minipage}
+\cuttingline
+
+% LX025 - سجاد خماس حيدر حافظ - Sheet B
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{B}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=B}{LX025}{سجاد خماس حيدر حافظ}
+\sheetBcontent
+\end{minipage}
+\newpage
+
+% LX030 - طه اسامه باسم مهدي - Sheet C
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{C}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=C}{LX030}{طه اسامه باسم مهدي}
+\sheetCcontent
+\end{minipage}
+\cuttingline
+
+% LX033 - عبد العزيز طاهر صالح احمد - Sheet D
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{D}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=D}{LX033}{عبد العزيز طاهر صالح احمد}
+\sheetDcontent
+\end{minipage}
+\newpage
+
+% LX034 - عبد الله بشير مبارك محمد - Sheet E
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{E}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=E}{LX034}{عبد الله بشير مبارك محمد}
+\sheetEcontent
+\end{minipage}
+\cuttingline
+
+% LX040 - علي حاتم زرع الله فرهود - Sheet F
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{F}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=F}{LX040}{علي حاتم زرع الله فرهود}
+\sheetFcontent
+\end{minipage}
+\newpage
+
+% LX041 - علي حسام عبد العزيز صدام - Sheet A
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{A}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=A}{LX041}{علي حسام عبد العزيز صدام}
+\sheetAcontent
+\end{minipage}
+\cuttingline
+
+% LX042 - علي قاسم حمود جابر - Sheet B
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{B}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=B}{LX042}{علي قاسم حمود جابر}
+\sheetBcontent
+\end{minipage}
+\newpage
+
+% LX043 - علي وسام ناظم جنيت - Sheet C
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{C}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=C}{LX043}{علي وسام ناظم جنيت}
+\sheetCcontent
+\end{minipage}
+\cuttingline
+
+% LX044 - عمار ابراهيم حمدي عباس - Sheet D
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{D}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=D}{LX044}{عمار ابراهيم حمدي عباس}
+\sheetDcontent
+\end{minipage}
+\newpage
+
+% LX045 - فاضل ابراهيم فاضل محمد - Sheet E
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{E}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=E}{LX045}{فاضل ابراهيم فاضل محمد}
+\sheetEcontent
+\end{minipage}
+\cuttingline
+
+% LX047 - فاطمه عادل عباس شايع - Sheet F
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{F}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=F}{LX047}{فاطمه عادل عباس شايع}
+\sheetFcontent
+\end{minipage}
+\newpage
+
+% LX050 - كرار عباس رحيم جاسم - Sheet A
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{A}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=A}{LX050}{كرار عباس رحيم جاسم}
+\sheetAcontent
+\end{minipage}
+\cuttingline
+
+% LX052 - مازن احمد سهام اسماعيل - Sheet B
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{B}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=B}{LX052}{مازن احمد سهام اسماعيل}
+\sheetBcontent
+\end{minipage}
+\newpage
+
+% LX055 - محمد باقر ماجد سيد حسين - Sheet C
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{C}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=C}{LX055}{محمد باقر ماجد سيد حسين}
+\sheetCcontent
+\end{minipage}
+\cuttingline
+
+% LX056 - محمد جاسم محمد عبد - Sheet D
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{D}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=D}{LX056}{محمد جاسم محمد عبد}
+\sheetDcontent
+\end{minipage}
+\newpage
+
+% LX057 - محمد رياض حسين عبد الله - Sheet E
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{E}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=E}{LX057}{محمد رياض حسين عبد الله}
+\sheetEcontent
+\end{minipage}
+\cuttingline
+
+% LX059 - محمد علاء حسين خنيصر - Sheet F
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{F}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=F}{LX059}{محمد علاء حسين خنيصر}
+\sheetFcontent
+\end{minipage}
+\newpage
+
+% LX063 - مصدق رحيم عطيه علي - Sheet A
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{A}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=A}{LX063}{مصدق رحيم عطيه علي}
+\sheetAcontent
+\end{minipage}
+\cuttingline
+
+% LX064 - مصطفى جاسم محمد زبون - Sheet B
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{B}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=B}{LX064}{مصطفى جاسم محمد زبون}
+\sheetBcontent
+\end{minipage}
+\newpage
+
+% LX069 - منتظر حمود حسين ربيع - Sheet C
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{C}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=C}{LX069}{منتظر حمود حسين ربيع}
+\sheetCcontent
+\end{minipage}
+\cuttingline
+
+% LX070 - منتظر علي حسين علوان - Sheet D
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{D}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=D}{LX070}{منتظر علي حسين علوان}
+\sheetDcontent
+\end{minipage}
+\newpage
+
+% LX071 - موسى شاكر كحيط كريم - Sheet E
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{E}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=E}{LX071}{موسى شاكر كحيط كريم}
+\sheetEcontent
+\end{minipage}
+\cuttingline
+
+% LX072 - نغم عبد اللطيف محمود علي - Sheet F
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{F}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=F}{LX072}{نغم عبد اللطيف محمود علي}
+\sheetFcontent
+\end{minipage}
+\newpage
+
+% LX073 - نور مهند عبد الكريم شغيدل - Sheet A
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{A}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=A}{LX073}{نور مهند عبد الكريم شغيدل}
+\sheetAcontent
+\end{minipage}
+\cuttingline
+
+% LX075 - ولاء سالم جاسم سالم - Sheet B
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{B}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=B}{LX075}{ولاء سالم جاسم سالم}
+\sheetBcontent
+\end{minipage}
+\newpage
+
+% LX077 - يوسف احمد حسن علي - Sheet C
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{C}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=C}{LX077}{يوسف احمد حسن علي}
+\sheetCcontent
+\end{minipage}
+
+\end{document}
