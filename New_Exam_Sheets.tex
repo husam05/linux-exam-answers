@@ -1,0 +1,237 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{qrcode}
+\usepackage{xcolor}
+\usepackage{fontspec}
+\usepackage{bidi}
+\usepackage{tikz}
+
+\newfontfamily\arabicfont{Arial}[Script=Arabic]
+
+% Set up page geometry for half-page sheets
+\setlength{\textheight}{297mm}
+\setlength{\textwidth}{210mm}
+\setlength{\oddsidemargin}{-1in}
+\setlength{\evensidemargin}{-1in}
+\setlength{\topmargin}{-1in}
+\setlength{\headheight}{0pt}
+\setlength{\headsep}{0pt}
+\addtolength{\oddsidemargin}{1.5cm}
+\addtolength{\evensidemargin}{1.5cm}
+\addtolength{\topmargin}{1.5cm}
+
+% Cutting line command
+\newcommand{\cuttingline}{%
+    \vspace{2mm}
+    \noindent\tikz\draw[dashed, thick] (0,0) -- (\textwidth,0);
+    \vspace{2mm}
+}
+
+% Exam header with QR code
+\newcommand{\examheader}[6]{
+    \noindent\begin{minipage}[t]{0.7\textwidth}
+        \textbf{\large Linux Lab - Mid-Term Exam}\\[2mm]
+        \textbf{Sheet:} \textbf{#2} \hfill \textbf{Duration:} #3\\[2mm]
+        \textbf{Date:} November 2, 2025 \hfill \textbf{Total Marks:} 10\\[2mm]
+        \rule{\textwidth}{0.5pt}\\[2mm]
+        \textbf{Instructions:}
+        \begin{itemize}
+            \item Answer all questions.
+            \item Write your answers clearly and legibly.
+            \item Use of calculators or electronic devices is not permitted during the exam.
+        \end{itemize}
+        \rule{\textwidth}{0.5pt}\\[2mm]
+        \textbf{Student Name:} \RL{\arabicfont \textbf{#6}} \hfill \textbf{Student ID:} \textbf{#5}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{0.25\textwidth}
+        \raggedleft
+        \textbf{Scan QR Code}\\
+        \textbf{for Answers:}\\[2mm]
+        \qrcode[height=3cm]{#4}
+    \end{minipage}
+    \vspace{3mm}
+}
+
+% Sheet A Content - ls command and permissions
+\newcommand{\sheetAcontent}{
+\textbf{Question 1:} (5 marks)\\
+What command would you use to list detailed information about the file \texttt{/etc/passwd}, including permissions, owner, group, size, and modification date?
+
+\vspace{15mm}
+
+\textbf{Question 2:} (5 marks)\\
+If a file has the permission \texttt{rwxr-xr--}, explain what each part means:
+\begin{itemize}
+    \item \texttt{rwx} =
+    \item \texttt{r-x} =
+    \item \texttt{r--} =
+\end{itemize}
+
+\vspace{15mm}
+}
+
+% Sheet B Content - whoami command
+\newcommand{\sheetBcontent}{
+\textbf{Question 1:} (5 marks)\\
+What Linux command displays the username of the currently logged-in user?
+
+\vspace{15mm}
+
+\textbf{Question 2:} (5 marks)\\
+Which Linux distribution is specifically designed for cybersecurity professionals and ethical hackers?
+\begin{enumerate}
+    \item[(a)] Ubuntu
+    \item[(b)] Fedora
+    \item[(c)] Kali Linux
+    \item[(d)] Debian
+\end{enumerate}
+
+\vspace{15mm}
+}
+
+% Sheet C Content - pwd command and sudo
+\newcommand{\sheetCcontent}{
+\textbf{Question 1:} (5 marks)\\
+What command is used to display the full path of the current working directory?
+
+\vspace{15mm}
+
+\textbf{Question 2:} (5 marks)\\
+What does the command \texttt{sudo} stand for in Linux?
+\begin{enumerate}
+    \item[(a)] Super User Do
+    \item[(b)] System User Data Output
+    \item[(c)] Secure User Domain
+    \item[(d)] Switch User Delete Object
+\end{enumerate}
+
+\vspace{15mm}
+}
+
+% Sheet D Content - df command
+\newcommand{\sheetDcontent}{
+\textbf{Question 1:} (5 marks)\\
+What command displays disk space usage in human-readable format (showing sizes in KB, MB, GB)?
+
+\vspace{15mm}
+
+\textbf{Question 2:} (5 marks)\\
+In the output of \texttt{df -h}, what does the "Use\%" column represent?
+\begin{enumerate}
+    \item[(a)] Total disk capacity
+    \item[(b)] Percentage of disk space used
+    \item[(c)] Number of files stored
+    \item[(d)] Disk read/write speed
+\end{enumerate}
+
+\vspace{15mm}
+}
+
+% Sheet E Content - uname command
+\newcommand{\sheetEcontent}{
+\textbf{Question 1:} (5 marks)\\
+What command displays all system information including kernel name, version, and hardware architecture?
+
+\vspace{15mm}
+
+\textbf{Question 2:} (5 marks)\\
+What does the \texttt{uname -a} command display?
+\begin{enumerate}
+    \item[(a)] Only the kernel version
+    \item[(b)] Only the hostname
+    \item[(c)] All system information
+    \item[(d)] Only the processor type
+\end{enumerate}
+
+\vspace{15mm}
+}
+
+% Sheet F Content - top command
+\newcommand{\sheetFcontent}{
+\textbf{Question 1:} (5 marks)\\
+What command displays real-time information about running processes, CPU usage, and memory consumption?
+
+\vspace{15mm}
+
+\textbf{Question 2:} (5 marks)\\
+In the \texttt{top} command output, what does the CPU\% column show?
+\begin{enumerate}
+    \item[(a)] Total CPU cores available
+    \item[(b)] CPU temperature
+    \item[(c)] Percentage of CPU used by each process
+    \item[(d)] CPU clock speed
+\end{enumerate}
+
+\vspace{15mm}
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+
+\begin{document}
+
+% Student 1: رقيه اياد مذكور عزيز - ID: 10599 - Sheet A
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{A}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=A}{10599}{رقيه اياد مذكور عزيز}
+\sheetAcontent
+\end{minipage}
+\cuttingline
+
+% Student 2: ضي مهدي صالح جابر - ID: 10608 - Sheet B
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{B}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=B}{10608}{ضي مهدي صالح جابر}
+\sheetBcontent
+\end{minipage}
+\newpage
+
+% Student 3: عبد الله علاء عادل حسن - ID: 10615 - Sheet C
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{C}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=C}{10615}{عبد الله علاء عادل حسن}
+\sheetCcontent
+\end{minipage}
+\cuttingline
+
+% Student 4: علي احمد مصطفى عبد الله - ID: 10616 - Sheet D
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{D}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=D}{10616}{علي احمد مصطفى عبد الله}
+\sheetDcontent
+\end{minipage}
+\newpage
+
+% Student 5: فاضل زيدان خوف الله حسن - ID: 10626 - Sheet E
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{E}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=E}{10626}{فاضل زيدان خوف الله حسن}
+\sheetEcontent
+\end{minipage}
+\cuttingline
+
+% Student 6: كرار حسن عبد الرضا سوادي - ID: 10629 - Sheet F
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{F}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=F}{10629}{كرار حسن عبد الرضا سوادي}
+\sheetFcontent
+\end{minipage}
+\newpage
+
+% Student 7: مصطفى خليل ابراهيم عبد الكريم - ID: 10646 - Sheet A
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{A}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=A}{10646}{مصطفى خليل ابراهيم عبد الكريم}
+\sheetAcontent
+\end{minipage}
+\cuttingline
+
+% Student 8: مصطفى كاظم ثويني مذبوب - ID: 10647 - Sheet B
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{B}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=B}{10647}{مصطفى كاظم ثويني مذبوب}
+\sheetBcontent
+\end{minipage}
+\newpage
+
+% Student 9: يزن علي غازي عبد الحسين - ID: 11858 - Sheet C
+\begin{minipage}[t][\dimexpr0.5\textheight-5mm\relax][t]{\textwidth}
+\examheader{LINUX LAB EXAM}{C}{30 minutes}{https://husam05.github.io/linux-exam-answers/student-auth-77.html?sheet=C}{11858}{يزن علي غازي عبد الحسين}
+\sheetCcontent
+\end{minipage}
+
+\end{document}
