@@ -1,166 +1,387 @@
-\documentclass[12pt,a4paper]{article}
-\usepackage[margin=1.5cm]{geometry}
-\usepackage{graphicx}
-\usepackage{qrcode}
-\usepackage{xcolor}
+\documentclass[a4paper,11pt]{article}
 \usepackage{fontspec}
+\setmainfont{Arial}
+\newfontfamily\arabicfont[Script=Arabic]{Arial}
 \usepackage{bidi}
+\usepackage[margin=0.6in,top=0.7in,bottom=0.6in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{xcolor}
 \usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{qrcode}
+\usepackage{hyperref}
 
-\newfontfamily\arabicfont{Arial}[Script=Arabic]
+% Professional Academic Color Scheme
+\definecolor{primaryblue}{RGB}{0,51,102}
+\definecolor{accentblue}{RGB}{0,102,204}
+\definecolor{codebg}{RGB}{248,249,250}
+\definecolor{bordercolor}{RGB}{180,180,180}
+\definecolor{lightgray}{RGB}{240,240,240}
 
-% Set up page geometry for half-page sheets
-\setlength{\textheight}{297mm}
-\setlength{\textwidth}{210mm}
-\setlength{\oddsidemargin}{-1in}
-\setlength{\evensidemargin}{-1in}
-\setlength{\topmargin}{-1in}
-\setlength{\headheight}{0pt}
-\setlength{\headsep}{0pt}
-\addtolength{\oddsidemargin}{1.5cm}
-\addtolength{\evensidemargin}{1.5cm}
-\addtolength{\topmargin}{1.5cm}
-
-% Cutting line command
-\newcommand{\cuttingline}{%
+% Professional Exam Header with QR Code, Student ID, and Student Name
+\newcommand{\examheader}[6]{%
+    \noindent
+    \begin{tikzpicture}
+        \fill[primaryblue] (0,0) rectangle (\textwidth, 1.2cm);
+    \node[white] at (0.5\textwidth, 0.8cm) {\Large \textbf{AlMustafa University}};
+    \node[white] at (0.5\textwidth, 0.35cm) {\small Cybersecurity Engineering Department};
+    \end{tikzpicture}
+    
+    \vspace{3mm}
+    \noindent
+    {\large\textbf{Linux Lab - Mid-Term Exam}}
+    
     \vspace{2mm}
-    \noindent\tikz\draw[dashed, thick] (0,0) -- (\textwidth,0);
+    \noindent
+    \textbf{Instructor:} Dr. Husam Alkinani \hfill \textbf{Exam Sheet:} #2
+    
+    \noindent
+    \textbf{Date:} November 2, 2025 \hfill \textbf{Duration:} #3
+    
     \vspace{2mm}
-}
-
-% Exam header with QR code
-\newcommand{\examheader}[6]{
-    \noindent\begin{minipage}[t]{0.7\textwidth}
-        \textbf{\large Linux Lab - Mid-Term Exam}\\[1mm]
-        \textbf{Sheet:} \textbf{#2} \hfill \textbf{Duration:} #3\\[1mm]
-        \textbf{Date:} November 2, 2025 \hfill \textbf{Total Marks:} 10\\[1mm]
-        \rule{\textwidth}{0.5pt}\\[1mm]
-        \textbf{Instructions:} Answer all questions clearly.\\[1mm]
-        \rule{\textwidth}{0.5pt}\\[1mm]
-        \textbf{Student Name:} \RL{\arabicfont \textbf{#6}} \hfill \textbf{Student ID:} \textbf{#5}
+    \noindent\rule{\textwidth}{0.8pt}
+    \vspace{2mm}
+    
+    \noindent
+    \textbf{Student Name:} \RL{\arabicfont \textbf{#6}} \hfill \textbf{Student ID:} \textbf{#5}
+    
+    \vspace{2.5mm}
+    \noindent
+    \colorbox{lightgray}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{%
+        \small\textbf{Instructions:} Answer all questions clearly. Execute commands in your Linux terminal. Write legibly. \textbf{Total: 20 points}
+    }}
+    
+    % QR Code for Answer Access - Enhanced Size for Camera Scanning
+    \vspace{3mm}
+    \noindent
+    \begin{tcolorbox}[
+        colback=white,
+        colframe=primaryblue,
+        boxrule=1.5pt,
+        arc=3pt,
+        left=8pt,
+        right=8pt,
+        top=6pt,
+        bottom=6pt,
+        width=\textwidth
+    ]
+    \begin{minipage}{0.65\textwidth}
+        \textcolor{primaryblue}{\textbf{Answer Key Access:}} \\
+        \small Scan QR code with mobile camera for secure answer verification
     \end{minipage}%
-    \hfill
-    \begin{minipage}[t]{0.25\textwidth}
-        \raggedleft
-        \textbf{Scan QR}\\
-        \textbf{for Answers:}\\[1mm]
-        \qrcode[height=2.5cm]{#4}
+    \begin{minipage}{0.35\textwidth}
+        \centering
+        \qrcode[height=3.2cm, padding]{#4}
     \end{minipage}
+    \end{tcolorbox}
     \vspace{2mm}
 }
 
-% Sheet A Content - ls command and permissions
-\newcommand{\sheetAcontent}{
-\textbf{Question 1:} (5 marks)\\
-What command would you use to list detailed information about the file \texttt{/etc/passwd}, including permissions, owner, group, size, and modification date?
-
-\vspace{10mm}
-
-\textbf{Question 2:} (5 marks)\\
-If a file has the permission \texttt{rwxr-xr--}, explain what each part means:
-\begin{itemize}
-    \item \texttt{rwx} =
-    \item \texttt{r-x} =
-    \item \texttt{r--} =
-\end{itemize}
-
-\vspace{8mm}
+% Professional Cutting Line
+\newcommand{\cuttingline}{%
+    \vspace{4mm}
+    \noindent
+    \begin{tikzpicture}
+        \draw[dashed, line width=1pt, gray] (0,0) -- (\textwidth,0);
+    \end{tikzpicture}
+    \vspace{4mm}
 }
 
-% Sheet B Content - whoami command
-\newcommand{\sheetBcontent}{
-\textbf{Question 1:} (5 marks)\\
-What Linux command displays the username of the currently logged-in user?
+% Professional Code Box
+\newcommand{\codebox}[1]{%
+    \vspace{1mm}
+    \noindent
+    \begin{tcolorbox}[
+        colback=codebg,
+        colframe=accentblue,
+        boxrule=1pt,
+        arc=2pt,
+        left=4pt,
+        right=4pt,
+        top=3pt,
+        bottom=3pt,
+        width=\textwidth
+    ]
+    \centering\ttfamily\large\textbf{#1}
+    \end{tcolorbox}
+    \vspace{1mm}
+}
 
-\vspace{10mm}
+% Professional Answer Box
+\newcommand{\answerbox}[1]{%
+    \vspace{1mm}
+    \noindent
+    \begin{tcolorbox}[
+        colback=white,
+        colframe=bordercolor,
+        boxrule=0.8pt,
+        arc=1pt,
+        height=#1,
+        left=6pt,
+        right=6pt,
+        top=4pt,
+        bottom=4pt,
+        width=\textwidth
+    ]
+    \textcolor{gray}{\footnotesize \textit{Write your answer here:}}
+    \end{tcolorbox}
+}
 
-\textbf{Question 2:} (5 marks)\\
-Which Linux distribution is specifically designed for cybersecurity professionals and ethical hackers?
-\begin{enumerate}
-    \item[(a)] Ubuntu
-    \item[(b)] Fedora
-    \item[(c)] Kali Linux
-    \item[(d)] Debian
+% Sheet A Content
+\newcommand{\sheetAcontent}{%
+\textbf{\large\textcolor{primaryblue}{Question 1: Practical Command Execution}} \hfill \textit{(10 points)}
+
+\vspace{1mm}
+Execute the following command in your Linux terminal and document the complete output:
+
+\codebox{ls -l /etc/passwd}
+
+\textbf{Command Output:}
+\answerbox{26mm}
+
+\textbf{Explanation:} Describe what information this command displays (2-3 lines):
+
+\underline{\hspace{\textwidth}}
+
+\underline{\hspace{\textwidth}}
+
+\vspace{2mm}
+\noindent\rule{\textwidth}{0.4pt}
+\vspace{2mm}
+
+\textbf{\large\textcolor{primaryblue}{Question 2: Theoretical Knowledge}} \hfill \textit{(10 points)}
+
+\vspace{1mm}
+\textbf{Multiple Choice Question:}
+
+In Linux file permissions, what does the notation "rwx" represent?
+
+\begin{enumerate}[label=\textbf{\alph*)}, leftmargin=*, itemsep=2pt, topsep=2pt]
+    \item read, write, execute
+    \item root, web, extra
+    \item run, wait, exit
+    \item red, white, expert
 \end{enumerate}
 
-\vspace{8mm}
+\textbf{Your Answer:} \underline{\hspace{2.5cm}}
+
+\textbf{Justification (1 line):} \underline{\hspace{9.5cm}}
 }
 
-% Sheet C Content - pwd command and sudo
-\newcommand{\sheetCcontent}{
-\textbf{Question 1:} (5 marks)\\
-What command is used to display the full path of the current working directory?
+% Sheet B Content
+\newcommand{\sheetBcontent}{%
+\textbf{\large\textcolor{primaryblue}{Question 1: Practical Command Execution}} \hfill \textit{(10 points)}
 
-\vspace{10mm}
+\vspace{1mm}
+Execute the following command in your Linux terminal and document the complete output:
 
-\textbf{Question 2:} (5 marks)\\
-What does the command \texttt{sudo} stand for in Linux?
-\begin{enumerate}
-    \item[(a)] Super User Do
-    \item[(b)] System User Data Output
-    \item[(c)] Secure User Domain
-    \item[(d)] Switch User Delete Object
+\codebox{whoami}
+
+\textbf{Command Output:}
+\answerbox{26mm}
+
+\textbf{Explanation:} Describe the function and purpose of this command (2-3 lines):
+
+\underline{\hspace{\textwidth}}
+
+\underline{\hspace{\textwidth}}
+
+\vspace{2mm}
+\noindent\rule{\textwidth}{0.4pt}
+\vspace{2mm}
+
+\textbf{\large\textcolor{primaryblue}{Question 2: Theoretical Knowledge}} \hfill \textit{(10 points)}
+
+\vspace{1mm}
+\textbf{Multiple Choice Question:}
+
+Which Linux distribution is specifically designed for cybersecurity professionals and penetration testing?
+
+\begin{enumerate}[label=\textbf{\alph*)}, leftmargin=*, itemsep=2pt, topsep=2pt]
+    \item Windows Operating System
+    \item Kali Linux
+    \item Microsoft Office Suite
+    \item Google Chrome Browser
 \end{enumerate}
 
-\vspace{8mm}
+\textbf{Your Answer:} \underline{\hspace{2.5cm}}
+
+\textbf{Justification (1 line):} \underline{\hspace{9.5cm}}
 }
 
-% Sheet D Content - df command
-\newcommand{\sheetDcontent}{
-\textbf{Question 1:} (5 marks)\\
-What command displays disk space usage in human-readable format (showing sizes in KB, MB, GB)?
+% Sheet C Content
+\newcommand{\sheetCcontent}{%
+\textbf{\large\textcolor{primaryblue}{Question 1: Practical Command Execution}} \hfill \textit{(10 points)}
 
-\vspace{10mm}
+\vspace{1mm}
+Execute the following command in your Linux terminal and document the complete output:
 
-\textbf{Question 2:} (5 marks)\\
-In the output of \texttt{df -h}, what does the "Use\%" column represent?
-\begin{enumerate}
-    \item[(a)] Total disk capacity
-    \item[(b)] Percentage of disk space used
-    \item[(c)] Number of files stored
-    \item[(d)] Disk read/write speed
+\codebox{pwd}
+
+\textbf{Command Output:}
+\answerbox{26mm}
+
+\textbf{Explanation:} Describe what information this command provides (2-3 lines):
+
+\underline{\hspace{\textwidth}}
+
+\underline{\hspace{\textwidth}}
+
+\vspace{2mm}
+\noindent\rule{\textwidth}{0.4pt}
+\vspace{2mm}
+
+\textbf{\large\textcolor{primaryblue}{Question 2: Theoretical Knowledge}} \hfill \textit{(10 points)}
+
+\vspace{1mm}
+\textbf{Multiple Choice Question:}
+
+What does the Linux command 'sudo' stand for?
+
+\begin{enumerate}[label=\textbf{\alph*)}, leftmargin=*, itemsep=2pt, topsep=2pt]
+    \item Super user do
+    \item System update download only
+    \item Secure user data online
+    \item Start up disk operations
 \end{enumerate}
 
-\vspace{8mm}
+\textbf{Your Answer:} \underline{\hspace{2.5cm}}
+
+\textbf{Justification (1 line):} \underline{\hspace{9.5cm}}
 }
 
-% Sheet E Content - uname command
-\newcommand{\sheetEcontent}{
-\textbf{Question 1:} (5 marks)\\
-What command displays all system information including kernel name, version, and hardware architecture?
+% Sheet D Content
+\newcommand{\sheetDcontent}{%
+\textbf{\large\textcolor{primaryblue}{Question 1: Practical Command Execution}} \hfill \textit{(10 points)}
 
-\vspace{10mm}
+\vspace{1mm}
+Execute the following command in your Linux terminal and document the complete output:
 
-\textbf{Question 2:} (5 marks)\\
-What does the \texttt{uname -a} command display?
-\begin{enumerate}
-    \item[(a)] Only the kernel version
-    \item[(b)] Only the hostname
-    \item[(c)] All system information
-    \item[(d)] Only the processor type
+\codebox{df -h}
+
+\textbf{Command Output:}
+\answerbox{24mm}
+
+\textbf{Explanation:} Describe what information this command displays (2-3 lines):
+
+\underline{\hspace{\textwidth}}
+
+\underline{\hspace{\textwidth}}
+
+\vspace{2mm}
+\noindent\rule{\textwidth}{0.4pt}
+\vspace{2mm}
+
+\textbf{\large\textcolor{primaryblue}{Question 2: Theoretical Knowledge}} \hfill \textit{(10 points)}
+
+\vspace{1mm}
+\textbf{Multiple Choice Question:}
+
+What does the 'df -h' command display in Linux?
+
+\begin{enumerate}[label=\textbf{\alph*)}, leftmargin=*, itemsep=2pt, topsep=2pt]
+    \item Directory file listing
+    \item Disk space usage in human-readable format
+    \item Date and file information
+    \item Default filesystem type
 \end{enumerate}
 
-\vspace{8mm}
+\textbf{Your Answer:} \underline{\hspace{2.5cm}}
+
+\textbf{Justification (1 line):} \underline{\hspace{9.5cm}}
 }
 
-% Sheet F Content - top command
-\newcommand{\sheetFcontent}{
-\textbf{Question 1:} (5 marks)\\
-What command displays real-time information about running processes, CPU usage, and memory consumption?
+% Sheet E Content
+\newcommand{\sheetEcontent}{%
+\textbf{\large\textcolor{primaryblue}{Question 1: Practical Command Execution}} \hfill \textit{(10 points)}
 
-\vspace{10mm}
+\vspace{1mm}
+Execute the following command in your Linux terminal and document the output:
 
-\textbf{Question 2:} (5 marks)\\
-In the \texttt{top} command output, what does the CPU\% column show?
-\begin{enumerate}
-    \item[(a)] Total CPU cores available
-    \item[(b)] CPU temperature
-    \item[(c)] Percentage of CPU used by each process
-    \item[(d)] CPU clock speed
+\codebox{uname -a}
+
+\textbf{Command Output:}
+\answerbox{23mm}
+
+\textbf{Explanation:} Describe what system information this command provides (2-3 lines):
+
+\underline{\hspace{\textwidth}}
+
+\underline{\hspace{\textwidth}}
+
+\vspace{2mm}
+\noindent\rule{\textwidth}{0.4pt}
+\vspace{2mm}
+
+\textbf{\large\textcolor{primaryblue}{Question 2: Theoretical Knowledge}} \hfill \textit{(10 points)}
+
+\vspace{1mm}
+\textbf{Multiple Choice Question:}
+
+What type of information does the 'uname -a' command display?
+
+\begin{enumerate}[label=\textbf{\alph*)}, leftmargin=*, itemsep=2pt, topsep=2pt]
+    \item User account names and passwords
+    \item Complete system information including kernel version
+    \item Network configuration details
+    \item Disk usage and filesystem information
 \end{enumerate}
 
-\vspace{8mm}
+\textbf{Your Answer:} \underline{\hspace{2.5cm}}
+
+\textbf{Justification (1 line):} \underline{\hspace{9.5cm}}
 }
+
+% Sheet F Content
+\newcommand{\sheetFcontent}{%
+\textbf{\large\textcolor{primaryblue}{Question 1: Practical Command Execution}} \hfill \textit{(10 points)}
+
+\vspace{1mm}
+Execute the following command in your Linux terminal and document the output:
+
+\codebox{top}
+
+\textbf{Command Output:}
+\answerbox{23mm}
+
+\textbf{Explanation:} Describe what information the 'top' command displays (2-3 lines):
+
+\underline{\hspace{\textwidth}}
+
+\underline{\hspace{\textwidth}}
+
+\vspace{2mm}
+\noindent\rule{\textwidth}{0.4pt}
+\vspace{2mm}
+
+\textbf{\large\textcolor{primaryblue}{Question 2: Theoretical Knowledge}} \hfill \textit{(10 points)}
+
+\vspace{1mm}
+\textbf{Multiple Choice Question:}
+
+What is the primary purpose of the 'top' command in Linux system administration?
+
+\begin{enumerate}[label=\textbf{\alph*)}, leftmargin=*, itemsep=2pt, topsep=2pt]
+    \item Display static file system information
+    \item Monitor real-time system processes and resource usage
+    \item Configure network interfaces
+    \item Manage user accounts and permissions
+\end{enumerate}
+
+\textbf{Your Answer:} \underline{\hspace{2.5cm}}
+
+\textbf{Justification (1 line):} \underline{\hspace{9.5cm}}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\small \textcolor{gray}{Linux Cybersecurity Lab Exam}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{2pt}
